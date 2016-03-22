@@ -69,14 +69,7 @@
                                         </f:facet>
                                         <h:outputText value="#{item.leadEmail}"/>
                                     </p:column>
-                                    <p:column sortBy="#{item.dateCreated}" style="width: 80px;">
-                                        <f:facet name="header">
-                                            <h:outputText value="DateCreated"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.dateCreated}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy" />
-                                        </h:outputText>
-                                    </p:column>
+                                    
                                     <p:column>
                                         <f:facet name="header">
                                             <h:outputText value="Action"/>
