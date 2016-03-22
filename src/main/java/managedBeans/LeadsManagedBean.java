@@ -9,6 +9,8 @@ import ejb.LeadsFacade;
 import entities.Leads;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 /**
@@ -34,4 +36,12 @@ public class LeadsManagedBean {
     public LeadsManagedBean() {
     }
     
+    public String doCreateLead(){
+        leadEJB.create(lead);
+        lead = new Leads();
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Info",
+                "Create Success !"));
+        return "addlead.xhtml";
+    }
 }

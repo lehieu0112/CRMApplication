@@ -36,9 +36,9 @@
                         <f:view>
                             <h:form styleClass="createform">
                                 <h2><h:outputText value="Create a new Lead"/></h2><br></br>
-                                <p:panelGrid columns="2">                                 
+                                <p:panelGrid columns="2" id="grid">                                 
                                     <p:outputLabel value="LeadName:" for="leadName" />
-                                    <p:inputText id="leadName" value="#{leadsManagedBean.lead.leadName}" title="LeadName" />
+                                    <p:inputText id="leadName" value="#{leadsManagedBean.lead.leadName}" title="LeadName" required="true" requiredMessage="Enter FullName" />
                                     <p:outputLabel value="LeadDOB:" for="leadDOB" />
                                     <p:inputText id="leadDOB" value="#{leadsManagedBean.lead.leadDOB}" title="LeadDOB" >
                                         <f:convertDateTime pattern="MM/dd/yyyy" />
@@ -57,8 +57,8 @@
                                     </p:inputText>
                                     
                                 </p:panelGrid><br></br>
-                                
-                                <p:commandButton value="Add new Lead"/>
+                                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                                <p:commandButton update="grid" value="Add new Lead"/>
                             </h:form>
                         </f:view>
 
