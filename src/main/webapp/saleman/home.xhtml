@@ -14,18 +14,18 @@
                 <p:layout style="min-width:800px;height:800px;">
 
                     <p:layoutUnit position="west" size="215">
-                        <h:form>  
-                            <p:growl id="messages" showDetail="false"/>
+                        <h:form>        
                             <p:menu style="width:195px;height:776px">
-                                <p:submenu label="Ajax">
-                                    <p:menuitem value="Save" update="messages" icon="ui-icon-disk" />
-                                    <p:menuitem value="Update" update="messages" icon="ui-icon-arrowrefresh-1-w"/>
+                                <p:submenu label="Leads Management" styleClass="bar">
+                                    <p:menuitem value="Create a new Lead"/>
+                                    <p:menuitem value="View all Leads"/>
+                                    <p:menuitem value="Search Leads"/>
                                 </p:submenu>
-                                <p:submenu label="Non-Ajax">
-                                    <p:menuitem value="Delete" actionListener="#{menuView.delete}" update="messages" ajax="false" icon="ui-icon-close"/>
+                                <p:submenu label="Opportunity Management" styleClass="bar">
+                                    <p:menuitem value="Delete"/>
                                 </p:submenu>
-                                <p:submenu label="Navigations">
-                                    <p:menuitem value="External" url="http://www.primefaces.org" icon="ui-icon-home"/>
+                                <p:submenu label="Profile Management" styleClass="bar">
+                                    <p:menuitem value="External"/>
                                     
                                 </p:submenu>
                             </p:menu>
@@ -33,7 +33,7 @@
                     </p:layoutUnit>
 
                     <p:layoutUnit position="center">
-                        
+                        <h1>Wellcome to Sale Management</h1>
                     </p:layoutUnit>
                  
                 </p:layout>

@@ -69,3 +69,20 @@
     margin-bottom: 10px;
 }
 
+.bar{
+    background-color:#c2dfef;
+}
+
+#content h1{
+    text-align: center;
+    color: black;
+}
+
+.createform input{
+    width: 400px;
+}
+.createform h2 {
+    border: none;
+    text-align: left;
+}
+
