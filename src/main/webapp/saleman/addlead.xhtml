@@ -9,13 +9,11 @@
     <body>
 
         <ui:composition template="./../layout/layout.xhtml">
-
             <ui:define name="content">
                 <p:layout style="min-width:800px;height:800px;">
-
                     <p:layoutUnit position="west" size="215">
                         <h:form>        
-                            <p:menu style="width:195px;height:776px">
+                            <p:menu style="width:195px; height:776px">
                                 <p:submenu label="Leads Management" styleClass="bar">
                                     <p:menuitem value="Create a new Lead"/>
                                     <p:menuitem value="View all Leads"/>
@@ -26,7 +24,6 @@
                                 </p:submenu>
                                 <p:submenu label="Profile Management" styleClass="bar">
                                     <p:menuitem value="External"/>
-
                                 </p:submenu>
                             </p:menu>
                         </h:form>
@@ -55,18 +52,14 @@
                                     <p:inputText id="dateCreated" value="#{leadsManagedBean.lead.dateCreated}" title="DateCreated" >
                                         <f:convertDateTime pattern="MM/dd/yyyy" />
                                     </p:inputText>
-                                    
                                 </p:panelGrid><br></br>
                                 <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
                                 <p:commandButton update="grid" value="Add new Lead"/>
                             </h:form>
                         </f:view>
-
                     </p:layoutUnit>
-
                 </p:layout>
             </ui:define>
-
         </ui:composition>
 
     </body>

@@ -60,20 +60,18 @@
     text-decoration : underline;
 }
 #login_form {
-    margin-left: 40%;
+    margin-left: 35%;
     margin-top: 10px;
     margin-bottom: 10px;
+    height: 393px;
 }
-
 .bar{
     background-color:#c2dfef;
 }
-
 #content h1{
     text-align: center;
     color: black;
 }
-
 .createform input{
     width: 400px;
 }
@@ -81,4 +79,3 @@
     border: none;
     text-align: left;
 }
-
