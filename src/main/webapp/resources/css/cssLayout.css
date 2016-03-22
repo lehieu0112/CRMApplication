@@ -79,3 +79,9 @@
     border: none;
     text-align: left;
 }
+.createform .button{
+    width: 150px;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: #c2dfef;
+}

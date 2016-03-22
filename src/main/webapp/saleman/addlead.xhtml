@@ -35,26 +35,46 @@
                                 <h2><h:outputText value="Create a new Lead"/></h2><br></br>
                                 <p:panelGrid columns="2" id="grid">                                 
                                     <p:outputLabel value="LeadName:" for="leadName" />
-                                    <p:inputText id="leadName" value="#{leadsManagedBean.lead.leadName}" title="LeadName" required="true" requiredMessage="Enter FullName" />
+                                    <p:inputText id="leadName" value="#{leadsManagedBean.lead.leadName}" title="LeadName" 
+                                                 required="true" requiredMessage="Enter FullName">
+                                        <f:validateLength minimum="6"/>
+                                    </p:inputText>
                                     <p:outputLabel value="LeadDOB:" for="leadDOB" />
-                                    <p:inputText id="leadDOB" value="#{leadsManagedBean.lead.leadDOB}" title="LeadDOB" >
-                                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                                    </p:inputText>
+                                    <p:calendar id="leadDOB" value="#{leadsManagedBean.lead.leadDOB}" title="LeadDOB" 
+                                                required="true" requiredMessage="Enter DOB" locale="us" navigator="true"
+                                                pattern="dd-MM-yyyy" mask="true" showOn="button">
+                                    </p:calendar>
                                     <p:outputLabel value="LeadAddress:" for="leadAddress" />
-                                    <p:inputText id="leadAddress" value="#{leadsManagedBean.lead.leadAddress}" title="LeadAddress" />
-                                    <p:outputLabel value="LeadPhone:" for="leadPhone" />
-                                    <p:inputText id="leadPhone" value="#{leadsManagedBean.lead.leadPhone}" title="LeadPhone" />
-                                    <p:outputLabel value="LeadCareer:" for="leadCareer" />
-                                    <p:inputText id="leadCareer" value="#{leadsManagedBean.lead.leadCareer}" title="LeadCareer" />
-                                    <p:outputLabel value="LeadEmail:" for="leadEmail" />
-                                    <p:inputText id="leadEmail" value="#{leadsManagedBean.lead.leadEmail}" title="LeadEmail" />
-                                    <p:outputLabel value="DateCreated:" for="dateCreated" />
-                                    <p:inputText id="dateCreated" value="#{leadsManagedBean.lead.dateCreated}" title="DateCreated" >
-                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                                    <p:inputText id="leadAddress" value="#{leadsManagedBean.lead.leadAddress}" title="LeadAddress" 
+                                                 required="true" requiredMessage="Enter Address">
+                                        <f:validateLength minimum="8"/>
                                     </p:inputText>
+                                    <p:outputLabel value="LeadPhone:" for="leadPhone" />
+                                    <p:inputText id="leadPhone" value="#{leadsManagedBean.lead.leadPhone}" title="LeadPhone" 
+                                                 required="true" requiredMessage="Enter Phone Number">
+                                        <f:validateLength minimum="8"/>
+                                    </p:inputText>
+                                    <p:outputLabel value="LeadCareer:" for="leadCareer" />
+                                    <p:inputText id="leadCareer" value="#{leadsManagedBean.lead.leadCareer}" title="LeadCareer"
+                                                 required="true" requiredMessage="Enter Career">
+                                        <f:validateLength minimum="5"/>
+                                    </p:inputText>
+                                    <p:outputLabel value="LeadEmail:" for="leadEmail" />
+                                    <p:inputText id="leadEmail" value="#{leadsManagedBean.lead.leadEmail}" title="LeadEmail"
+                                                 required="true" requiredMessage="Enter Email" placeholder="abc123@mail.com">
+                                        <f:validateLength minimum="7"/><f:validateRegex pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"/>
+                                    </p:inputText>
+                                    <p:outputLabel value="DateCreated:" for="dateCreated" />
+                                    <p:calendar id="dateCreated" value="#{leadsManagedBean.lead.dateCreated}" title="DateCreated"
+                                                required="true" requiredMessage="Enter Date created" locale="us" navigator="true"
+                                                pattern="dd-MM-yyyy" mask="true" showOn="button">
+                                    </p:calendar>
+                       
                                 </p:panelGrid><br></br>
-                                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
-                                <p:commandButton update="grid" value="Add new Lead"/>
+                                <p:messages id="messages" autoUpdate="true" closable="true" />
+                                <h:commandButton styleClass="button" value="Add new Lead" action="#{leadsManagedBean.doCreateLead()}">  
+                                    <f:ajax execute="@form" render="@form"/>
+                                </h:commandButton>
                             </h:form>
                         </f:view>
                     </p:layoutUnit>

@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../layout/layout.xhtml">
+
+            <ui:define name="content">
+                <p:layout style="min-width:800px;height:800px;">
+                    <p:layoutUnit position="west" size="215">
+                        <h:form>        
+                            <p:menu style="width:195px; height:776px">
+                                <p:submenu label="Leads Management" styleClass="bar">
+                                    <p:menuitem value="Create a new Lead"/>
+                                    <p:menuitem value="View all Leads"/>
+                                    <p:menuitem value="Search Leads"/>
+                                </p:submenu>
+                                <p:submenu label="Opportunity Management" styleClass="bar">
+                                    <p:menuitem value="Delete"/>
+                                </p:submenu>
+                                <p:submenu label="Profile Management" styleClass="bar">
+                                    <p:menuitem value="External"/>
+                                </p:submenu>
+                            </p:menu>
+                        </h:form>
+                    </p:layoutUnit>
+
+                    <p:layoutUnit id="center_table" position="center">
+                        <f:view>
+                            <h:form>
+                                <h1><h:outputText value="List all Leads"/></h1>
+                                <p:dataTable value="#{leadsManagedBean.doFindAllLeads()}" var="item" 
+                                             filteredValue="#{leadsManagedBean.searchList}"
+                                             rows="20" paginator="true">                                    
+                                    <p:column filterBy="#{item.leadName}" filterMatchMode="contains">
+                                        <f:facet name="header">
+                                            <h:outputText value="LeadName"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.leadName}"/>
+                                    </p:column>
+                                    
+                                    <p:column filterBy="#{item.leadAddress}" filterMatchMode="contains">
+                                        <f:facet name="header">
+                                            <h:outputText value="LeadAddress"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.leadAddress}"/>
+                                    </p:column>
+                                    <p:column filterBy="#{item.leadPhone}" filterMatchMode="contains"
+                                              style="width: 110px;">
+                                        <f:facet name="header">
+                                            <h:outputText value="LeadPhone"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.leadPhone}"/>
+                                    </p:column>
+                                    <p:column filterBy="#{item.leadCareer}" filterMatchMode="contains">
+                                        <f:facet name="header">
+                                            <h:outputText value="LeadCareer"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.leadCareer}"/>
+                                    </p:column>
+                                    <p:column filterBy="#{item.leadEmail}" filterMatchMode="contains">
+                                        <f:facet name="header">
+                                            <h:outputText value="LeadEmail"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.leadEmail}"/>
+                                    </p:column>
+                                    <p:column sortBy="#{item.dateCreated}" style="width: 80px;">
+                                        <f:facet name="header">
+                                            <h:outputText value="DateCreated"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.dateCreated}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Action"/>
+                                        </f:facet>
+                                        <h:outputText value="action">
+                                          
+                                        </h:outputText>
+                                    </p:column>
+                                   
+                                </p:dataTable>
+                            </h:form>
+                        </f:view>
+
+                    </p:layoutUnit>
+                </p:layout>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
