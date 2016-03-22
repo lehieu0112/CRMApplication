@@ -7,9 +7,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <body>
-
         <ui:composition template="./../layout/layout.xhtml">
-
             <ui:define name="content">
                 <p:layout style="min-width:800px;height:800px;">
                     <p:layoutUnit position="west" size="215">
@@ -43,7 +41,6 @@
                                         </f:facet>
                                         <h:outputText value="#{item.leadName}"/>
                                     </p:column>
-                                    
                                     <p:column filterBy="#{item.leadAddress}" filterMatchMode="contains">
                                         <f:facet name="header">
                                             <h:outputText value="LeadAddress"/>
@@ -69,31 +66,19 @@
                                         </f:facet>
                                         <h:outputText value="#{item.leadEmail}"/>
                                     </p:column>
-                                    <p:column sortBy="#{item.dateCreated}" style="width: 80px;">
-                                        <f:facet name="header">
-                                            <h:outputText value="DateCreated"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.dateCreated}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy" />
-                                        </h:outputText>
-                                    </p:column>
                                     <p:column>
                                         <f:facet name="header">
                                             <h:outputText value="Action"/>
                                         </f:facet>
                                         <h:outputText value="action">
-                                          
                                         </h:outputText>
                                     </p:column>
-                                   
                                 </p:dataTable>
                             </h:form>
                         </f:view>
-
                     </p:layoutUnit>
                 </p:layout>
             </ui:define>
-
         </ui:composition>
 
     </body>
