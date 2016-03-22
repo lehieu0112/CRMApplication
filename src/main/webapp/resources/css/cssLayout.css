@@ -7,7 +7,6 @@
     color: white;
     padding: 5px;
     text-align: center;
-
 }
 #bottom {
     position: relative;
@@ -15,7 +14,13 @@
     height: 100px;
     padding: 5px;
     text-align: center;
-
+}
+#bottom p {
+    font-size: 120%;
+    padding-top: 20px;
+}
+#bottom a {
+    font-size: 110%;
 }
 #left {
     float: left;
