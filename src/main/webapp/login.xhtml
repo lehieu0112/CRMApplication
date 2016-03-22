@@ -6,25 +6,21 @@
       xmlns:p="http://primefaces.org/ui">
 
     <body>
-
         <ui:composition template="./layout/layout.xhtml">
-
             <ui:define name="content">
                 <h:form id="login_form">
                     <h:panelGrid columns="2" id="matchGrid" cellpadding="5">                   
-                        <h:outputLabel for="pwd1" value="Username: " />
-                        <p:inputText label="Username" required="true" />
-                        <h:outputLabel for="pwd2" value="Password: " style="margin-top: 5px;"/>
-                        <p:password label="Password 2" required="true" style="margin-top: 5px;" />
+                        <h:outputLabel value="Username: " />
+                        <p:inputText required="true" />
+                        <h:outputLabel value="Password: " style="margin-top: 5px;"/>
+                        <p:password required="true" style="margin-top: 5px;" />
                         <h:outputLabel>
-                            <input value="rememberme" type="checkbox"> Remember me</input>
+                            <p:selectBooleanCheckbox value="rememberme" style="margin-top: 5px;"/> Remember me
                         </h:outputLabel>
                     </h:panelGrid>
                     <p:commandButton update="matchGrid" value="Sign in" style="margin-left: 15%;"/>
                 </h:form>
             </ui:define>
-
         </ui:composition>
-
     </body>
 </html>
