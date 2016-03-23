@@ -20,7 +20,6 @@ public class LeadsManagedBean {
     private Leads lead = new Leads();
     @Inject
     private UsersFacade userEJB;
-    private Users user = new Users();
 
     private List<Leads> searchList;
     private List<Leads> listLeads;
@@ -47,14 +46,6 @@ public class LeadsManagedBean {
 
     public void setLead(Leads lead) {
         this.lead = lead;
-    }
-
-    public Users getUser() {
-        return user;
-    }
-
-    public void setUser(Users user) {
-        this.user = user;
     }
 
     public LeadsManagedBean() {
