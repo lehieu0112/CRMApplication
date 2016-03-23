@@ -9,6 +9,7 @@ import entities.Leads;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -28,4 +29,13 @@ public class LeadsFacade extends AbstractFacade<Leads> {
         super(Leads.class);
     }
     
+    public boolean isExistLeads(Leads lead){
+        boolean isExist = false;
+        Query q = getEntityManager().createNamedQuery("Leads.findByLeadEmail");
+        q.setParameter("leadEmail", lead.getLeadEmail());       
+        if(q.getResultList().size()>0){
+            isExist = true;           
+        }
+        return isExist;
+    }
 }
