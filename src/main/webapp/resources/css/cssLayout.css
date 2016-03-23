@@ -85,3 +85,10 @@
     border-radius: 3px;
     background-color: #c2dfef;
 }
+
+.listform .button{
+    width: 60px;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: #c2dfef;
+}

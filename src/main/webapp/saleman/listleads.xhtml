@@ -14,8 +14,8 @@
                         <h:form>        
                             <p:menu style="width:195px; height:776px">
                                 <p:submenu label="Leads Management" styleClass="bar">
-                                    <p:menuitem value="Create a new Lead"/>
-                                    <p:menuitem value="View all Leads"/>
+                                    <p:menuitem value="Create a new Lead" outcome="addlead.xhtml"/>
+                                    <p:menuitem value="View all Leads" outcome="listleads.xhtml"/>
                                     <p:menuitem value="Search Leads"/>
                                 </p:submenu>
                                 <p:submenu label="Opportunity Management" styleClass="bar">
@@ -30,17 +30,24 @@
 
                     <p:layoutUnit id="center_table" position="center">
                         <f:view>
-                            <h:form>
+                            <h:form styleClass="listform">
                                 <h1><h:outputText value="List all Leads"/></h1>
                                 <p:dataTable value="#{leadsManagedBean.doFindAllLeads()}" var="item" 
                                              filteredValue="#{leadsManagedBean.searchList}"
-                                             rows="20" paginator="true">                                    
+                                             rows="20" paginator="true">  
+                                    <f:facet name="header">
+                                        Expand rows to see detailed information
+                                    </f:facet>
+                                    <p:column style="width:16px">
+                                        <p:rowToggler />
+                                    </p:column>
                                     <p:column filterBy="#{item.leadName}" filterMatchMode="contains">
                                         <f:facet name="header">
                                             <h:outputText value="LeadName"/>
                                         </f:facet>
                                         <h:outputText value="#{item.leadName}"/>
                                     </p:column>
+
                                     <p:column filterBy="#{item.leadAddress}" filterMatchMode="contains">
                                         <f:facet name="header">
                                             <h:outputText value="LeadAddress"/>
@@ -66,13 +73,50 @@
                                         </f:facet>
                                         <h:outputText value="#{item.leadEmail}"/>
                                     </p:column>
+
                                     <p:column>
                                         <f:facet name="header">
                                             <h:outputText value="Action"/>
                                         </f:facet>
-                                        <h:outputText value="action">
-                                        </h:outputText>
+                                        <h:commandButton styleClass="button" value="Edit" action="#{leadsManagedBean.doEditLead(item.leadID)}"/>
+                                        <h:commandButton styleClass="button" value="Delete" action="#{leadsManagedBean.doDeleteLead(item.leadID)}">
+                                            <f:ajax execute="@form" render="@form"/>
+                                        </h:commandButton>
+
                                     </p:column>
+
+                                    <p:rowExpansion>
+                                        <p:panelGrid  columns="2" columnClasses="label,value" style="width:400px">
+                                            <f:facet name="header">
+                                                <h:outputText value="Infomation"/> 
+                                            </f:facet>
+
+                                            <h:outputText value="Id" />
+                                            <h:outputText value="#{item.leadID}" />
+
+                                            <h:outputText value="FullName" />
+                                            <h:outputText value="#{item.leadName}" />
+
+                                            <h:outputText value="DOB" />
+                                            <h:outputText value="#{item.leadDOB}"/>
+
+                                            <h:outputText value="Address" />
+                                            <h:outputText value="#{item.leadAddress}" />
+
+                                            <h:outputText value="Phone" />
+                                            <h:outputText value="#{item.leadPhone}" />
+
+                                            <h:outputText value="Email" />
+                                            <h:outputText value="#{item.leadEmail}" />
+
+                                            <h:outputText value="Career" />
+                                            <h:outputText value="#{item.leadCareer}" />
+
+                                            <h:outputText value="DateCreated" />
+                                            <h:outputText value="#{item.dateCreated}" />
+
+                                        </p:panelGrid>
+                                    </p:rowExpansion>
                                 </p:dataTable>
                             </h:form>
                         </f:view>
@@ -83,3 +127,7 @@
 
     </body>
 </html>
+
+
+
+

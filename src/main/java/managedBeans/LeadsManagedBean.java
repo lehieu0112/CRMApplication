@@ -27,9 +27,19 @@ public class LeadsManagedBean {
     private LeadsFacade leadEJB;
     @Inject
     private UsersFacade userEJB;
-    private Leads lead= new Leads();
+    
+    private Leads lead = new Leads();
     private List<Leads> searchList;
+    private List<Leads> listLeads;
+    
+    public List<Leads> getListLeads() {
+        return listLeads;
+    }
 
+    public void setListLeads(List<Leads> listLeads) {
+        this.listLeads = listLeads;
+    }
+    
     public List<Leads> getSearchList() {
         return searchList;
     }
@@ -50,15 +60,40 @@ public class LeadsManagedBean {
     
     public String doCreateLead(){
         lead.setUserID(userEJB.find(1));
-        leadEJB.create(lead);
-        lead = new Leads();
-        FacesContext.getCurrentInstance().addMessage(null,
+        if(leadEJB.isExistLeads(lead)){            
+            FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_WARN, "Lead Email is Existed",
+                "Lead Email is Existed"));           
+        }else{
+            leadEJB.create(lead);
+            FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Create Success",
                 "Create Success !"));
+            lead = new Leads();
+        }  
         return "addlead.xhtml";
     }
     
     public List<Leads> doFindAllLeads(){
         return leadEJB.findAll();
+    }
+    
+    public String doEditLead(Integer id){
+        lead = leadEJB.find(id);
+        return "editlead.xhtml";
+    }
+    
+    public String applyEditLead(){
+        lead.setUserID(userEJB.find(1));
+        leadEJB.edit(lead);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Edit Success",
+                "Edit Success !"));
+        return "editlead.xhtml";
+    }
+    
+    public String doDeleteLead(Integer id){
+        leadEJB.remove(leadEJB.find(id));
+        return "listleads.xhtml";
     }
 }
