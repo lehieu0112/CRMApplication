@@ -3,7 +3,6 @@ package managedBeans;
 import ejb.LeadsFacade;
 import ejb.UsersFacade;
 import entities.Leads;
-import entities.Users;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;

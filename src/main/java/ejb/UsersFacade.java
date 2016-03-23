@@ -1,6 +1,7 @@
 package ejb;
 
 import entities.Users;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -33,13 +34,27 @@ public class UsersFacade extends AbstractFacade<Users> {
         query.executeUpdate();
     }
 
-    public boolean isExistLeads(Users user) {
+    public boolean isExistUsers(Users user) {
         boolean isExist = false;
-        Query q = getEntityManager().createNamedQuery("Users.findByUserEmail");
-        q.setParameter("userEmail", user.getUserEmail());
-        if (q.getResultList().size() > 0) {
+        Query query = em.createNamedQuery("Users.findByUserEmail");
+        query.setParameter("userEmail", user.getUserEmail());
+        if (query.getResultList().size() > 0) {
             isExist = true;
         }
         return isExist;
     }
+
+    public void resetPass(String userEmail, String loginPass) {
+        Query query = em.createNativeQuery("update Users set loginPass = ?1 where userEmail = ?2");
+        query.setParameter(1, loginPass);
+        query.setParameter(2, userEmail);
+        query.executeUpdate();
+    }
+
+    public List<Users> doFindUserByEmail(Users user) {
+        Query query = em.createNamedQuery("Users.findByUserEmail");
+        query.setParameter("userEmail", user.getUserEmail());
+        return query.getResultList();
+    }
+
 }

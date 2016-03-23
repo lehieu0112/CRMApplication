@@ -19,7 +19,7 @@
                                 </p:submenu>
                             </p:menu>
                         </h:form>
-                    </p:layoutUnit>
+                    </p:layoutUnit>                    
 
                     <p:layoutUnit position="center">
                         <f:view>
@@ -77,7 +77,8 @@
                                     </p:selectOneMenu>
                                 </p:panelGrid><br></br>
                                 <p:messages id="messages" autoUpdate="true" closable="true" />
-                                <h:commandButton styleClass="button" value="Add new User" action="#{adminManagedBean.doCreateUser()}">  
+                                <h:commandButton styleClass="button" value="Add new User" action="#{adminManagedBean.doCreateUser()}" 
+                                                 style="margin-left: 20%;">  
                                     <f:ajax execute="@form" render="@form"/>
                                 </h:commandButton>
                             </h:form>
