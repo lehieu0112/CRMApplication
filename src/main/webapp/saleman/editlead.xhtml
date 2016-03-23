@@ -70,9 +70,10 @@
                                                 required="true" requiredMessage="Enter Date created" locale="us" navigator="true"
                                                 pattern="dd-MM-yyyy" mask="true" showOn="button">
                                     </p:calendar>
-                                    <h:inputHidden value="#{leadsManagedBean.lead.leadID}"/>
+                                    
    
                                 </p:panelGrid><br></br>
+                                <h:inputHidden value="#{leadsManagedBean.lead.leadID}"/>
                                 <p:messages id="messages" autoUpdate="true" closable="true" />
                                 <h:commandButton styleClass="button" value="Apply" action="#{leadsManagedBean.applyEditLead()}">  
                                     <f:ajax execute="@form" render="@form"/>
