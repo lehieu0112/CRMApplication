@@ -22,7 +22,7 @@
                                     <p:menuitem value="Delete"/>
                                 </p:submenu>
                                 <p:submenu label="Profile Management" styleClass="bar">
-                                    <p:menuitem value="External"/>
+                                    <p:menuitem value="Update profile"/>
                                 </p:submenu>
                             </p:menu>
                         </h:form>
@@ -47,7 +47,6 @@
                                         </f:facet>
                                         <h:outputText value="#{item.leadName}"/>
                                     </p:column>
-
                                     <p:column filterBy="#{item.leadAddress}" filterMatchMode="contains">
                                         <f:facet name="header">
                                             <h:outputText value="LeadAddress"/>
@@ -73,7 +72,6 @@
                                         </f:facet>
                                         <h:outputText value="#{item.leadEmail}"/>
                                     </p:column>
-
                                     <p:column>
                                         <f:facet name="header">
                                             <h:outputText value="Action"/>
@@ -82,7 +80,6 @@
                                         <h:commandButton styleClass="button" value="Delete" action="#{leadsManagedBean.doDeleteLead(item.leadID)}">
                                             <f:ajax execute="@form" render="@form"/>
                                         </h:commandButton>
-
                                     </p:column>
 
                                     <p:rowExpansion>
@@ -124,7 +121,6 @@
                 </p:layout>
             </ui:define>
         </ui:composition>
-
     </body>
 </html>
 

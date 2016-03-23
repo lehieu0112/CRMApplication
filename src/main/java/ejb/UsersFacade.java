@@ -21,21 +21,25 @@ public class UsersFacade extends AbstractFacade<Users> {
         super(Users.class);
     }
 
-    public void activeUser() {
-        Query query = em.createQuery("update Users u set u.isActive = 1 where u.userID = ?1");
-        query.setParameter(1, "userID");
+    public void activeUser(Integer userID) {
+        Query query = em.createQuery("update Users u set u.isActive = 'true' where u.userID = ?1");
+        query.setParameter(1, userID);
         query.executeUpdate();
     }
 
-    public void deactiveUser() {
-        Query query = em.createQuery("update Users u set u.isActive = 0 where u.userID = ?1");
-        query.setParameter(1, "userID");
+    public void deactiveUser(Integer userID) {
+        Query query = em.createQuery("update Users u set u.isActive = 'false' where u.userID = ?1");
+        query.setParameter(1, userID);
         query.executeUpdate();
     }
 
-    public void deleteUser() {
-        Query query = em.createQuery("delete from Users u where u.userID = ?1");
-        query.setParameter(1, "userID");
-        query.executeUpdate();
+    public boolean isExistLeads(Users user) {
+        boolean isExist = false;
+        Query q = getEntityManager().createNamedQuery("Users.findByUserEmail");
+        q.setParameter("userEmail", user.getUserEmail());
+        if (q.getResultList().size() > 0) {
+            isExist = true;
+        }
+        return isExist;
     }
 }

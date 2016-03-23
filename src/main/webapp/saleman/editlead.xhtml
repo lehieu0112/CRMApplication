@@ -24,7 +24,7 @@
                                     <p:menuitem value="Delete"/>
                                 </p:submenu>
                                 <p:submenu label="Profile Management" styleClass="bar">
-                                    <p:menuitem value="External"/>
+                                    <p:menuitem value="Update profile"/>
                                 </p:submenu>
                             </p:menu>
                         </h:form>
@@ -70,8 +70,8 @@
                                                 required="true" requiredMessage="Enter Date created" locale="us" navigator="true"
                                                 pattern="dd-MM-yyyy" mask="true" showOn="button">
                                     </p:calendar>
-                                    
-   
+
+
                                 </p:panelGrid><br></br>
                                 <h:inputHidden value="#{leadsManagedBean.lead.leadID}"/>
                                 <p:messages id="messages" autoUpdate="true" closable="true" />

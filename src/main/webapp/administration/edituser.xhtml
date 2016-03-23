@@ -63,7 +63,7 @@
                                     <p:outputLabel value="Login Password:" for="loginPass" />
                                     <p:password id="loginPass" value="#{adminManagedBean.user.loginPass}" title="Login Password" 
                                                 required="true" requiredMessage="Enter Login Password">
-                                        <f:validateLength minimum="8"/>
+                                        <f:validateLength minimum="6"/>
                                     </p:password>
                                     <p:outputLabel value="User Role:" for="userRole" />
                                     <p:selectOneMenu id="userRole" value="#{adminManagedBean.user.userRole}" style="width:125px" 
@@ -81,7 +81,7 @@
                                     </p:selectOneMenu>
                                 </p:panelGrid><br></br>
                                 <p:messages id="messages" autoUpdate="true" closable="true" />
-                                <h:commandButton styleClass="button" value="Add new User" action="#{adminManagedBean.doCreateUser()}">  
+                                <h:commandButton styleClass="button" value="Apply" action="#{adminManagedBean.doEditUser()}">  
                                     <f:ajax execute="@form" render="@form"/>
                                 </h:commandButton>
                             </h:form>

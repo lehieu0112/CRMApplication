@@ -23,9 +23,9 @@
 
                     <p:layoutUnit id="center_table" position="center">
                         <f:view>
-                            <h:form>
+                            <h:form styleClass="listform">
                                 <h1><h:outputText value="List all Users"/></h1>
-                                <p:dataTable id="userlist" value="#{adminManagedBean.doFindAllUsers()}" var="item"
+                                <p:dataTable value="#{adminManagedBean.doFindAllUsers()}" var="item"
                                              rows="20" paginator="true" widgetVar="usersTable">
                                     <p:column style="width:16px">
                                         <p:rowToggler />
@@ -61,23 +61,23 @@
                                         </f:facet>
                                         <h:outputText value="#{item.isActive ? 'Active': 'Non'}" />
                                     </p:column>
-                                    <p:column>
+                                    <p:column style="width: 230px;">
                                         <f:facet name="header">
                                             <h:outputText value="Action"/>
                                         </f:facet>
-                                        <p:commandButton value="Active" action="#{adminManagedBean.doActive()}">
-                                            <f:ajax execute="@form" render=":userlist"/>
+                                        <p:commandButton value="Active" action="#{adminManagedBean.doActive(item.userID)}">
+                                            <f:ajax execute="@form" render="@form"/>
                                         </p:commandButton>
-                                        <p:commandButton value="De-Active" action="#{adminManagedBean.doDeActive()}">
-                                            <f:ajax execute="@form" render=":userlist"/>
+                                        <p:commandButton value="De-Active" action="#{adminManagedBean.doDeActive(item.userID)}">
+                                            <f:ajax execute="@form" render="@form"/>
                                         </p:commandButton>
-                                        <p:commandButton value="Delete">
-                                            <f:ajax execute="@form" render=":userlist"/>
+                                        <p:commandButton value="Delete" action="#{adminManagedBean.doDeleteUser(item.userID)}">
+                                            <f:ajax execute="@form" render="@form"/>
                                         </p:commandButton>
                                     </p:column>
 
                                     <p:rowExpansion>
-                                        <p:panelGrid  columns="2" columnClasses="label,value" style="width:300px">
+                                        <p:panelGrid  columns="2" columnClasses="label,value" style="width:400px">
                                             <h:outputText value="Id:"/>
                                             <h:outputText value="#{item.userID}"/>
                                             <h:outputText value="Full Name"/>

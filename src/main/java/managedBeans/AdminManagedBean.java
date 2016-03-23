@@ -35,9 +35,15 @@ public class AdminManagedBean {
     }
 
     public String doCreateUser() {
-        userEJB.create(user);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Create Success",
-                "Create Success !"));
+        if (userEJB.isExistLeads(user)) {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN, "User Email is Existed", "User Email is Existed"));
+        } else {
+            userEJB.create(user);
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Create Success", "Create Success !"));
+            user = new Users();
+        }
         return "adduser.xhtml";
     }
 
@@ -49,18 +55,25 @@ public class AdminManagedBean {
         this.user = userEJB.find(user.getUserID());
     }
 
-    public String doActive() {
-        userEJB.activeUser();
+    public String doEditUser() {
+        userEJB.edit(user);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Edit Success", "Edit Success !"));
+        return "edituser.xhtml";
+    }
+
+    public String doActive(Integer userID) {
+        userEJB.activeUser(userID);
         return "listusers.xhtml";
     }
 
-    public String doDeActive() {
-        userEJB.deactiveUser();
+    public String doDeActive(Integer userID) {
+        userEJB.deactiveUser(userID);
         return "listusers.xhtml";
     }
 
-    public String doDeleteUser() {
-        userEJB.deleteUser();
+    public String doDeleteUser(Integer userID) {
+        userEJB.remove(userEJB.find(userID));
         return "listusers.xhtml";
     }
 }
