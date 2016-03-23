@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition template="./../layout/layout.xhtml">
+            <ui:define name="content">
+                <p:layout style="min-width:800px; height:800px;">
+                    <p:layoutUnit position="west" size="215">
+                        <h:form>        
+                            <p:menu style="width:195px; height:776px">
+                                <p:submenu label="Users Management" styleClass="bar">
+                                    <p:menuitem value="Create a new User" outcome="/administration/adduser.xhtml"/>
+                                    <p:menuitem value="View all Users" outcome="/administration/listusers.xhtml"/>
+                                </p:submenu>
+                            </p:menu>
+                        </h:form>
+                    </p:layoutUnit>
+                    <p:layoutUnit position="center">
+                        <h1>Welcome to Administration</h1>
+                    </p:layoutUnit>
+                </p:layout>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

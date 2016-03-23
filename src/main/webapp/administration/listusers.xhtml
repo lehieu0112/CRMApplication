@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition template="./../layout/layout.xhtml">
+            <ui:define name="content">
+                <p:layout style="min-width:800px; height:800px;">
+                    <p:layoutUnit position="west" size="215">
+                        <h:form>        
+                            <p:menu style="width:195px; height:776px">
+                                <p:submenu label="Users Management" styleClass="bar">
+                                    <p:menuitem value="Create a new User" outcome="/administration/adduser.xhtml"/>
+                                    <p:menuitem value="View all Users" outcome="/administration/listusers.xhtml"/>
+                                </p:submenu>
+                            </p:menu>
+                        </h:form>
+                    </p:layoutUnit>
+
+                    <p:layoutUnit id="center_table" position="center">
+                        <f:view>
+                            <h:form>
+                                <h1><h:outputText value="List all Users"/></h1>
+                                <p:dataTable id="userlist" value="#{adminManagedBean.doFindAllUsers()}" var="item"
+                                             rows="20" paginator="true" widgetVar="usersTable">
+                                    <p:column style="width:16px">
+                                        <p:rowToggler />
+                                    </p:column>
+                                    <p:column filterBy="#{item.userEmail}" filterMatchMode="contains">
+                                        <f:facet name="header">
+                                            <h:outputText value="Email"/>
+                                        </f:facet>
+                                        <p:link outcome="/administration/edituser.xhtml?userID=#{item.userID}" 
+                                                value="#{item.userEmail}"/>
+                                    </p:column>
+                                    <p:column filterBy="#{item.loginName}" filterMatchMode="contains">
+                                        <f:facet name="header">
+                                            <h:outputText value="Login Name"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.loginName}"/>
+                                    </p:column>
+                                    <p:column filterBy="#{item.userRole}" filterMatchMode="contains">
+                                        <f:facet name="header">
+                                            <h:outputText value="User Role"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.userRole}"/>
+                                    </p:column>
+                                    <p:column filterBy="#{item.isActive}" headerText="Active" filterMatchMode="equals" 
+                                              style="width: 180px;">
+                                        <f:facet name="filter">
+                                            <p:selectOneButton onchange="PF('usersTable').filter()">
+                                                <f:converter converterId="javax.faces.Boolean" />
+                                                <f:selectItem itemLabel="All" itemValue="" />
+                                                <f:selectItem itemLabel="Active" itemValue="true" />
+                                                <f:selectItem itemLabel="Non" itemValue="false" />
+                                            </p:selectOneButton>
+                                        </f:facet>
+                                        <h:outputText value="#{item.isActive ? 'Active': 'Non'}" />
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Action"/>
+                                        </f:facet>
+                                        <p:commandButton value="Active" action="#{adminManagedBean.doActive()}">
+                                            <f:ajax execute="@form" render=":userlist"/>
+                                        </p:commandButton>
+                                        <p:commandButton value="De-Active" action="#{adminManagedBean.doDeActive()}">
+                                            <f:ajax execute="@form" render=":userlist"/>
+                                        </p:commandButton>
+                                        <p:commandButton value="Delete">
+                                            <f:ajax execute="@form" render=":userlist"/>
+                                        </p:commandButton>
+                                    </p:column>
+
+                                    <p:rowExpansion>
+                                        <p:panelGrid  columns="2" columnClasses="label,value" style="width:300px">
+                                            <h:outputText value="Id:"/>
+                                            <h:outputText value="#{item.userID}"/>
+                                            <h:outputText value="Full Name"/>
+                                            <h:outputText value="#{item.userFullName}"/>
+                                            <h:outputText value="Address" />
+                                            <h:outputText value="#{item.userAddress}"/>
+                                            <h:outputText value="Phone"/>
+                                            <h:outputText value="#{item.userPhone}"/>
+                                            <h:outputText value="Email"/>
+                                            <h:outputText value="#{item.userEmail}"/>
+                                            <h:outputText value="Date created"/>
+                                            <h:outputText value="#{item.dateCreated}"/>
+                                            <h:outputText value="Login Name"/>
+                                            <h:outputText value="#{item.loginName}"/>
+                                            <h:outputText value="Login Pass"/>
+                                            <h:outputText value="#{item.loginPass}"/>
+                                            <h:outputText value="Role"/>
+                                            <h:outputText value="#{item.userRole}"/>
+                                            <h:outputText value="isActive"/>
+                                            <h:outputText value="#{item.isActive}"/>
+                                        </p:panelGrid>
+                                    </p:rowExpansion>
+                                </p:dataTable>
+                            </h:form>
+                        </f:view>
+                    </p:layoutUnit>
+                </p:layout>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

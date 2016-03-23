@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entities;
 
 import java.io.Serializable;
@@ -25,10 +20,6 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author Administrator
- */
 @Entity
 @Table(name = "users")
 @XmlRootElement
@@ -45,6 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Users.findByUserRole", query = "SELECT u FROM Users u WHERE u.userRole = :userRole"),
     @NamedQuery(name = "Users.findByIsActive", query = "SELECT u FROM Users u WHERE u.isActive = :isActive")})
 public class Users implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -233,5 +225,5 @@ public class Users implements Serializable {
     public String toString() {
         return "entities.Users[ userID=" + userID + " ]";
     }
-    
+
 }
