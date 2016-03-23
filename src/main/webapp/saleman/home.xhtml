@@ -11,20 +11,20 @@
         <ui:composition template="./../layout/layout.xhtml">
 
             <ui:define name="content">
-                <p:layout style="min-width:800px;height:800px;">
+                <p:layout style="min-width:800px; height:800px;">
                     <p:layoutUnit position="west" size="215">
                         <h:form>        
-                            <p:menu style="width:195px;height:776px">
+                            <p:menu style="width:195px; height:776px">
                                 <p:submenu label="Leads Management" styleClass="bar">
-                                    <p:menuitem value="Create a new Lead" outcome="addlead.xhtml"/>
-                                    <p:menuitem value="View all Leads" outcome="listleads.xhtml"/>
+                                    <p:menuitem value="Create a new Lead" outcome="/saleman/addlead.xhtml"/>
+                                    <p:menuitem value="View all Leads" outcome="/saleman/listleads.xhtml"/>
                                     <p:menuitem value="Search Leads"/>
                                 </p:submenu>
                                 <p:submenu label="Opportunity Management" styleClass="bar">
                                     <p:menuitem value="Delete"/>
                                 </p:submenu>
                                 <p:submenu label="Profile Management" styleClass="bar">
-                                    <p:menuitem value="Update profile"/>
+                                    <p:menuitem value="Update profile" outcome="/saleman/editprofile.xhtml?userID=#{adminManagedBean.user.userID}"/>
                                 </p:submenu>
                             </p:menu>
                         </h:form>

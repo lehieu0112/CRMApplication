@@ -31,7 +31,7 @@
                                 <h2><h:outputText value="Create a new User"/></h2><br></br>
                                 <p:panelGrid columns="2" id="grid">                                 
                                     <p:outputLabel value="FullName:" for="userFullName" />
-                                    <p:inputText id="userFullName" value="#{adminManagedBean.user.userFullName}" title="FullName" 
+                                    <p:inputText id="userFullName" value="#{adminManagedBean.user.userFullName}" title="Full Name" 
                                                  required="true" requiredMessage="Enter FullName">
                                         <f:validateLength minimum="6"/>
                                     </p:inputText>
@@ -51,7 +51,7 @@
                                         <f:validateLength minimum="7"/><f:validateRegex pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"/>
                                     </p:inputText>
                                     <p:outputLabel value="DateCreated:" for="dateCreated" />
-                                    <p:calendar id="dateCreated" value="#{adminManagedBean.user.dateCreated}" title="DateCreated"
+                                    <p:calendar id="dateCreated" value="#{adminManagedBean.user.dateCreated}" title="Date Created"
                                                 required="true" requiredMessage="Enter Date created" locale="us" navigator="true"
                                                 pattern="dd-MM-yyyy" mask="true" showOn="button">
                                     </p:calendar>
