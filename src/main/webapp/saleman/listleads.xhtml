@@ -15,14 +15,12 @@
                             <p:menu style="width:195px; height:776px">
                                 <p:submenu label="Leads Management" styleClass="bar">
                                     <p:menuitem value="Create a new Lead" outcome="addlead.xhtml"/>
-                                    <p:menuitem value="View all Leads" outcome="listleads.xhtml"/>
-                                    <p:menuitem value="Search Leads"/>
+                                    <p:menuitem value="View all Leads" outcome="listleads.xhtml"/>                                 
                                 </p:submenu>
                                 <p:submenu label="Opportunity Management" styleClass="bar">
-                                    <p:menuitem value="Delete"/>
                                 </p:submenu>
                                 <p:submenu label="Profile Management" styleClass="bar">
-                                    <p:menuitem value="External"/>
+                                    <p:menuitem value="Log out" action="#{loginManagedBean.doLogOut()}"/>
                                 </p:submenu>
                             </p:menu>
                         </h:form>
@@ -34,7 +32,7 @@
                                 <h1><h:outputText value="List all Leads"/></h1>
                                 <p:dataTable value="#{leadsManagedBean.doFindAllLeads()}" var="item" 
                                              filteredValue="#{leadsManagedBean.searchList}"
-                                             rows="20" paginator="true">  
+                                             rows="15" paginator="true">  
                                     <f:facet name="header">
                                         Expand rows to see detailed information
                                     </f:facet>

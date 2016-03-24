@@ -4,6 +4,46 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
+    <filter>
+        <filter-name>loginFilter</filter-name>
+        <filter-class>filter.loginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>loginFilter</filter-name>
+        <url-pattern>/administrator/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>loginFilter</filter-name>
+        <url-pattern>/salemanager/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>loginFilter</filter-name>
+        <url-pattern>/saleman/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>adminFilter</filter-name>
+        <filter-class>filter.adminFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>adminFilter</filter-name>
+        <url-pattern>/administrator/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>salemanFilter</filter-name>
+        <filter-class>filter.salemanFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>salemanFilter</filter-name>
+        <url-pattern>/saleman/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>salemanagerFilter</filter-name>
+        <filter-class>filter.salemanagerFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>salemanagerFilter</filter-name>
+        <url-pattern>/salemanager/*</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -11,7 +51,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>/faces/*</url-pattern>
+        <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -19,6 +59,6 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/login.xhtml</welcome-file>
+        <welcome-file>wellcome</welcome-file>
     </welcome-file-list>
 </web-app>

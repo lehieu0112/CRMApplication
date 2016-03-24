@@ -16,14 +16,12 @@
                             <p:menu style="width:195px; height:776px">
                                 <p:submenu label="Leads Management" styleClass="bar">
                                     <p:menuitem value="Create a new Lead" outcome="addlead.xhtml"/>
-                                    <p:menuitem value="View all Leads" outcome="listleads.xhtml"/>
-                                    <p:menuitem value="Search Leads"/>
+                                    <p:menuitem value="View all Leads" outcome="listleads.xhtml"/>                                 
                                 </p:submenu>
                                 <p:submenu label="Opportunity Management" styleClass="bar">
-                                    <p:menuitem value="Delete"/>
                                 </p:submenu>
                                 <p:submenu label="Profile Management" styleClass="bar">
-                                    <p:menuitem value="External"/>
+                                    <p:menuitem value="Log out" action="#{loginManagedBean.doLogOut()}"/>
                                 </p:submenu>
                             </p:menu>
                         </h:form>
@@ -69,7 +67,7 @@
                                                 required="true" requiredMessage="Enter Date created" locale="us" navigator="true"
                                                 pattern="dd-MM-yyyy" mask="true" showOn="button">
                                     </p:calendar>
-                       
+                                    
                                 </p:panelGrid><br></br>
                                 <p:messages id="messages" autoUpdate="true" closable="true" />
                                 <h:commandButton styleClass="button" value="Add new Lead" action="#{leadsManagedBean.doCreateLead()}">  

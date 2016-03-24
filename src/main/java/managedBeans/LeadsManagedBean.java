@@ -8,12 +8,14 @@ package managedBeans;
 import ejb.LeadsFacade;
 import ejb.UsersFacade;
 import entities.Leads;
+import entities.Users;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -28,10 +30,13 @@ public class LeadsManagedBean {
     @Inject
     private UsersFacade userEJB;
     
+    private HttpSession session = (HttpSession) FacesContext.
+                    getCurrentInstance().getExternalContext().getSession(false);
     private Leads lead = new Leads();
     private List<Leads> searchList;
     private List<Leads> listLeads;
-    
+    private Users user = (Users)session.getAttribute("userlogin");
+              
     public List<Leads> getListLeads() {
         return listLeads;
     }
@@ -59,7 +64,7 @@ public class LeadsManagedBean {
     }
     
     public String doCreateLead(){
-        lead.setUserID(userEJB.find(1));
+        lead.setUserID(user);
         if(leadEJB.isExistLeads(lead)){            
             FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_WARN, "Lead Email is Existed",
@@ -84,7 +89,7 @@ public class LeadsManagedBean {
     }
     
     public String applyEditLead(){
-        lead.setUserID(userEJB.find(1));
+        lead.setUserID(user);
         leadEJB.edit(lead);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Edit Success",

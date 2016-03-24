@@ -11,14 +11,18 @@
                 <h:form id="login_form">
                     <h:panelGrid columns="2" id="matchGrid" cellpadding="10" style="padding-top: 40px;">                   
                         <h:outputLabel value="Username: " style="font-size: 120%;"/>
-                        <p:inputText required="true" />
+                        <p:inputText value="#{loginManagedBean.username}" 
+                                     required="true" requiredMessage="Enter FullName"/>
                         <h:outputLabel value="Password: " style="margin-top: 5px; font-size: 120%;"/>
-                        <p:password required="true" style="margin-top: 5px;" />
+                        <p:password value="#{loginManagedBean.password}" 
+                                    required="true" requiredMessage="Enter FullName" style="margin-top: 5px;" />
                         <h:outputLabel>
-                            <p:selectBooleanCheckbox value="rememberme" style="margin-top: 5px;"/> Remember me
+                            <p:selectBooleanCheckbox value="#{loginManagedBean.rememberme}" style="margin-top: 5px;"/> Remember me
                         </h:outputLabel>
                     </h:panelGrid>
-                    <p:commandButton update="matchGrid" value="Sign in" style="margin-left: 15%;"/>
+                    <p:messages id="messages" autoUpdate="true" closable="true" />
+                    <p:commandButton action="#{loginManagedBean.doCheckLogin()}"
+                        update="matchGrid" value="Sign in" style="margin-left: 15%;"/>
                 </h:form>
             </ui:define>
         </ui:composition>

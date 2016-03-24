@@ -17,14 +17,12 @@
                             <p:menu style="width:195px; height:776px">
                                 <p:submenu label="Leads Management" styleClass="bar">
                                     <p:menuitem value="Create a new Lead" outcome="addlead.xhtml"/>
-                                    <p:menuitem value="View all Leads" outcome="listleads.xhtml"/>
-                                    <p:menuitem value="Search Leads"/>
+                                    <p:menuitem value="View all Leads" outcome="listleads.xhtml"/>                                 
                                 </p:submenu>
                                 <p:submenu label="Opportunity Management" styleClass="bar">
-                                    <p:menuitem value="Delete"/>
                                 </p:submenu>
                                 <p:submenu label="Profile Management" styleClass="bar">
-                                    <p:menuitem value="External"/>
+                                    <p:menuitem value="Log out" action="#{loginManagedBean.doLogOut()}"/>
                                 </p:submenu>
                             </p:menu>
                         </h:form>
@@ -74,6 +72,7 @@
    
                                 </p:panelGrid><br></br>
                                 <h:inputHidden value="#{leadsManagedBean.lead.leadID}"/>
+                                
                                 <p:messages id="messages" autoUpdate="true" closable="true" />
                                 <h:commandButton styleClass="button" value="Apply" action="#{leadsManagedBean.applyEditLead()}">  
                                     <f:ajax execute="@form" render="@form"/>
