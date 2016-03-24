@@ -40,8 +40,8 @@
                                     <p:column filterBy="#{item.userEmail}" filterMatchMode="contains">
                                         <f:facet name="header">
                                             <h:outputText value="Email"/>
-                                        </f:facet>
-                                        <h:outputText  value="#{item.userEmail}"/>
+                                        </f:facet>                  
+                                        <h:outputText value="#{item.userEmail}"/>
                                     </p:column>
                                     <p:column filterBy="#{item.loginName}" filterMatchMode="contains">
                                         <f:facet name="header">
@@ -71,8 +71,7 @@
                                         <f:facet name="header">
                                             <h:outputText value="Action"/>
                                         </f:facet>
-                                        <h:commandButton styleClass="button" value="Edit" action="#{administratorManagedBean.doEdit(item.userID)}">
-                                            <f:ajax execute="@form" render="@form"/>
+                                        <h:commandButton styleClass="button" value="Edit" action="#{administratorManagedBean.editUser(item.userID)}">           
                                         </h:commandButton>
                                         <h:commandButton styleClass="button" value="Active" action="#{administratorManagedBean.doActive(item.userID)}">
                                             <f:ajax execute="@form" render="@form"/>
@@ -80,9 +79,7 @@
                                         <h:commandButton styleClass="button" style="width: 80px;" value="De-Active" action="#{administratorManagedBean.doDeActive(item.userID)}">
                                             <f:ajax execute="@form" render="@form"/>
                                         </h:commandButton>
-                                        <h:commandButton styleClass="button" value="Delete" action="#{administratorManagedBean.doDeleteUser(item.userID)}">
-                                            <f:ajax execute="@form" render="@form"/>
-                                        </h:commandButton>
+                                      
                                     </p:column>
 
                                     <p:rowExpansion>

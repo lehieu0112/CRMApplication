@@ -29,53 +29,62 @@
                     <p:layoutUnit position="center">
                         <f:view>
                             <h:form styleClass="createform">
-                                <h1><h:outputText value="Edit User"/></h1>
+                                <h2><h:outputText value="Edit User"/></h2>
                                 <p:panelGrid columns="2">
                                     <p:outputLabel value="UserFullName:" for="userFullName" />
-                                    <p:inputText id="userFullName" value="#{administratorManagedBean.user.userFullName}" 
+                                    <p:inputText id="userFullName" value="#{administratorManagedBean.edituser.userFullName}" 
                                                  title="UserFullName" required="true" requiredMessage="Enter FullName">
                                         <f:validateLength minimum="6"/>
                                     </p:inputText>
                                     <p:outputLabel value="UserAddress:" for="userAddress" />
-                                    <p:inputText id="userAddress" value="#{administratorManagedBean.user.userAddress}" 
+                                    <p:inputText id="userAddress" value="#{administratorManagedBean.edituser.userAddress}" 
                                                  title="UserAddress" required="true" requiredMessage="Enter Address">
                                         <f:validateLength minimum="8"/>
                                     </p:inputText>
                                     <p:outputLabel value="UserPhone:" for="userPhone" />
-                                    <p:inputText id="userPhone" value="#{administratorManagedBean.user.userPhone}" 
+                                    <p:inputText id="userPhone" value="#{administratorManagedBean.edituser.userPhone}" 
                                                  title="UserPhone" required="true" requiredMessage="Enter Phone Number">
                                         <f:validateLength minimum="8"/>
                                     </p:inputText>
                                     <p:outputLabel value="UserEmail:" for="userEmail" />
-                                    <p:inputText id="userEmail" value="#{administratorManagedBean.user.userEmail}" 
+                                    <p:inputText id="userEmail" value="#{administratorManagedBean.edituser.userEmail}" 
                                                  title="UserEmail" required="true" requiredMessage="Enter Email">
                                         <f:validateLength minimum="7"/>
                                         <f:validateRegex pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"/>
                                     </p:inputText>
+                                    <p:outputLabel value="DateCreated:" for="dateCreated" />
+                                    <p:calendar id="dateCreated" value="#{administratorManagedBean.edituser.dateCreated}" title="DateCreated"
+                                                required="true" requiredMessage="Enter Date created" locale="us" navigator="true"
+                                                pattern="dd-MM-yyyy" mask="true" showOn="button" disabled="true">
+                                    </p:calendar>
                                     <p:outputLabel value="LoginName:" for="loginName" />
-                                    <p:inputText id="loginName" value="#{administratorManagedBean.user.loginName}" 
+                                    <p:inputText id="loginName" value="#{administratorManagedBean.edituser.loginName}" 
                                                  title="LoginName" required="true" requiredMessage="Enter loginName">
-                                        <f:validateLength minimum="6"/>
+                                        <f:validateLength minimum="4"/>
                                     </p:inputText>
                                     <p:outputLabel value="LoginPass:" for="loginPass" />
-                                    <p:inputText id="loginPass" value="#{administratorManagedBean.user.loginPass}" 
+                                    <p:inputText id="loginPass" value="#{administratorManagedBean.edituser.loginPass}" 
                                                  title="LoginPass" required="true" requiredMessage="Enter loginName">
-                                        <f:validateLength minimum="6"/>
+                                        <f:validateLength minimum="4"/>
                                     </p:inputText>
                                     <p:outputLabel value="UserRole:" for="userRole" />
-                                    <p:inputText id="userRole" value="#{administratorManagedBean.user.userRole}" title="UserRole" />
+                                    <p:selectOneMenu id="userRole" value="#{administratorManagedBean.edituser.userRole}"
+                                                     required="true" requiredMessage="Select User Role">
+                                        <f:selectItem itemLabel="administrator" itemValue="administrator"/>
+                                        <f:selectItem itemLabel="salemanager" itemValue="salemanager"/>
+                                        <f:selectItem itemLabel="saleman" itemValue="saleman"/>
+                                    </p:selectOneMenu>
 
                                 </p:panelGrid><br></br>
-                                <h:inputHidden id="isActive" value="#{administratorManagedBean.user.isActive}"/>
-                                <h:inputHidden id="userID" value="#{administratorManagedBean.user.userID}"/>
-                                <h:inputHidden id="dateCreated" value="#{administratorManagedBean.user.dateCreated}"/>
+                                <h:inputHidden id="isActive" value="#{administratorManagedBean.edituser.isActive}"/>
+                                <h:inputHidden id="userID" value="#{administratorManagedBean.edituser.userID}"/>
+                                
                                 <p:messages id="messages" autoUpdate="true" closable="true" />
                                 <h:commandButton styleClass="button" value="Apply" action="#{administratorManagedBean.applyEditUser()}">  
                                     <f:ajax execute="@form" render="@form"/>
                                 </h:commandButton>
                             </h:form>
                         </f:view>
-
                     </p:layoutUnit>
                 </p:layout>
             </ui:define>

@@ -32,7 +32,17 @@ public class AdministratorManagedBean {
     private EmailkeyFacade emailkeyEJB;
     
     private Users user = new Users();
+    private Users edituser = new Users();
     private Emailkey emailkey = new Emailkey();
+    
+    public Users getEdituser() {
+        return edituser;
+    }
+
+    public void setEdituser(Users edituser) {
+        this.edituser = edituser;
+    }
+    
 
     public Users getUser() {
         return user;
@@ -65,9 +75,9 @@ public class AdministratorManagedBean {
         }
         return "adduser.xhtml";
     }
-    
-    public String doEdit(Integer id){
-        user = userEJB.find(id);
+       
+    public String editUser(Integer id){
+        edituser = userEJB.find(id);
         return "edituser.xhtml";
     }
 
@@ -80,7 +90,7 @@ public class AdministratorManagedBean {
     }
 
     public String applyEditUser() {
-        userEJB.edit(user);
+        userEJB.edit(edituser);
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Edit Success", "Edit Success !"));      
         return "edituser.xhtml";
@@ -94,12 +104,7 @@ public class AdministratorManagedBean {
     public String doDeActive(Integer userID) {
         userEJB.deactiveUser(userID);
         return "listusers.xhtml";
-    }
-
-    public String doDeleteUser(Integer userID) {
-        userEJB.remove(userEJB.find(userID));
-        return "listusers.xhtml";
-    }
+    } 
 
     public String doCheckEmail(String userEmail) {
         if (userEJB.isExistUsers(user)) {

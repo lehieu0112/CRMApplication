@@ -12,12 +12,12 @@
                 <h:form style="margin-left: 42%;">
                     <h:panelGrid columns="2">
                         <p:outputLabel for="userEmail" value="Please input your email below" style="margin-top: 10px; margin-bottom: 10px;"/><br></br>
-                        <p:inputText id="userEmail" placeholder="Your email" value="#{adminManagedBean.user.userEmail}">
+                        <p:inputText id="userEmail" placeholder="Your email" value="#{administratorManagedBean.user.userEmail}">
                             <f:validateLength minimum="8"/>
                         </p:inputText>
                     </h:panelGrid><br></br>
                     <p:messages id="messages" autoUpdate="true" closable="true" />
-                    <p:commandButton value="Apply" action="#{adminManagedBean.doCheckEmail(adminManagedBean.user.userEmail)}"
+                    <p:commandButton value="Apply" action="#{administratorManagedBean.doCheckEmail(administratorManagedBean.user.userEmail)}"
                                      style="margin-left: 7%;"/>
                 </h:form>
             </ui:define>
