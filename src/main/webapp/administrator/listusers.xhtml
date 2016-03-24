@@ -29,7 +29,7 @@
                             <h:form styleClass="listform">
                                 <h1><h:outputText value="List all Users"/></h1>
                                 <br></br>
-                                <p:dataTable value="#{adminManagedBean.doFindAllUsers()}" var="item"
+                                <p:dataTable value="#{administratorManagedBean.doFindAllUsers()}" var="item"
                                              rows="15" paginator="true" widgetVar="usersTable">
                                     <f:facet name="header">
                                         Expand rows to see detailed information
@@ -71,16 +71,16 @@
                                         <f:facet name="header">
                                             <h:outputText value="Action"/>
                                         </f:facet>
-                                        <h:commandButton styleClass="button" value="Edit" action="#{adminManagedBean.doEdit(item.userID)}">
+                                        <h:commandButton styleClass="button" value="Edit" action="#{administratorManagedBean.doEdit(item.userID)}">
                                             <f:ajax execute="@form" render="@form"/>
                                         </h:commandButton>
-                                        <h:commandButton styleClass="button" value="Active" action="#{adminManagedBean.doActive(item.userID)}">
+                                        <h:commandButton styleClass="button" value="Active" action="#{administratorManagedBean.doActive(item.userID)}">
                                             <f:ajax execute="@form" render="@form"/>
                                         </h:commandButton>
-                                        <h:commandButton styleClass="button" style="width: 80px;" value="De-Active" action="#{adminManagedBean.doDeActive(item.userID)}">
+                                        <h:commandButton styleClass="button" style="width: 80px;" value="De-Active" action="#{administratorManagedBean.doDeActive(item.userID)}">
                                             <f:ajax execute="@form" render="@form"/>
                                         </h:commandButton>
-                                        <h:commandButton styleClass="button" value="Delete" action="#{adminManagedBean.doDeleteUser(item.userID)}">
+                                        <h:commandButton styleClass="button" value="Delete" action="#{administratorManagedBean.doDeleteUser(item.userID)}">
                                             <f:ajax execute="@form" render="@form"/>
                                         </h:commandButton>
                                     </p:column>

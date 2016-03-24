@@ -1,10 +1,14 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package managedBeans;
 
 import ejb.EmailkeyFacade;
 import ejb.UsersFacade;
 import entities.Emailkey;
 import entities.Users;
-import java.io.Serializable;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -14,18 +18,30 @@ import javax.inject.Inject;
 import javax.mail.MessagingException;
 import util.MailUtil;
 
-@Named(value = "adminManagedBean")
+/**
+ *
+ * @author Administrator
+ */
+@Named(value = "administratorManagedBean")
 @RequestScoped
-public class AdminManagedBean implements Serializable {
+public class AdministratorManagedBean {
 
     @Inject
     private UsersFacade userEJB;
     @Inject
     private EmailkeyFacade emailkeyEJB;
     
-    private Emailkey emailkey = new Emailkey();
     private Users user = new Users();
-    
+    private Emailkey emailkey = new Emailkey();
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
+    }
+
     public Emailkey getEmailkey() {
         return emailkey;
     }
@@ -34,18 +50,9 @@ public class AdminManagedBean implements Serializable {
         this.emailkey = emailkey;
     }
     
-    public Users getUser() {
-        return user;
-    }
-
-    public void setUser(Users user) {
-        this.user = user;
+    public AdministratorManagedBean() {
     }
     
-    public AdminManagedBean() {
-    }
-    
-   
     public String doCreateUser() {
         if (userEJB.isExistUsers(user)) {
             FacesContext.getCurrentInstance().addMessage(null,
@@ -72,10 +79,10 @@ public class AdminManagedBean implements Serializable {
         userEJB.doFindUserByEmail(user);
     }
 
-    public String doEditUser() {
+    public String applyEditUser() {
         userEJB.edit(user);
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Edit Success", "Edit Success !"));
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Edit Success", "Edit Success !"));      
         return "edituser.xhtml";
     }
 
@@ -138,5 +145,4 @@ public class AdminManagedBean implements Serializable {
         }
         return "resetpassword.xhtml";
     }
-
 }
