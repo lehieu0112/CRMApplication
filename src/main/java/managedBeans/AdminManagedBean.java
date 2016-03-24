@@ -121,15 +121,15 @@ public class AdminManagedBean {
 
     public String doResetPassword(Integer keyID, String userEmail, String loginPass) {
         emailkey = new Emailkey(keyID, userEmail);
-//        if (emailkeyEJB.checkEmailKey(emailkey)) {
+        if (emailkeyEJB.checkEmailKey(emailkey)) {
             userEJB.resetPass(userEmail, loginPass);
             emailkeyEJB.remove(emailkey);
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_WARN, "Reset password success", "Reset password success"));
-//        } else {
-//            FacesContext.getCurrentInstance().addMessage(null,
-//                    new FacesMessage(FacesMessage.SEVERITY_WARN, "Link has been deleted", "Link has been deleted"));
-//        }
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN, "Link has been deleted", "Link has been deleted"));
+        }
         return "resetpassword.xhtml";
     }
 

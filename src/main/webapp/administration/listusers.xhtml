@@ -25,8 +25,9 @@
                         <f:view>
                             <h:form styleClass="listform">
                                 <h1><h:outputText value="List all Users"/></h1>
+                                <br></br>
                                 <p:dataTable value="#{adminManagedBean.doFindAllUsers()}" var="item"
-                                             rows="20" paginator="true" widgetVar="usersTable">
+                                             rows="15" paginator="true" widgetVar="usersTable">
                                     <f:facet name="header">
                                         Expand rows to see detailed information
                                     </f:facet>

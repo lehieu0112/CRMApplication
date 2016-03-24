@@ -26,15 +26,17 @@ public class EmailkeyFacade extends AbstractFacade<Emailkey> {
         super(Emailkey.class);
     }
 
-//    public boolean checkEmailKey(Emailkey emailkey) {
-//        boolean check = false;
-//        Query query = em.createNamedQuery("Emailkey.findByUserEmail");
-//        query.setParameter("userEmail", emailkey.getUserEmail());
-//        List<Emailkey> emailkeyList = query.getResultList();
-//        for (int i = 0; i < emailkeyList.size(); i++) {
-//            if ()
-//        }
-//        return check;
-//    }
+    public boolean checkEmailKey(Emailkey emailkey) {
+        boolean check = false;
+        Query query = em.createNamedQuery("Emailkey.findByUserEmail");
+        query.setParameter("userEmail", emailkey.getUserEmail());
+        List<Emailkey> emailkeyList = query.getResultList();
+        for (Emailkey item : emailkeyList) {
+            if (item.getKeyID().equals(emailkey.getKeyID())) {
+                check = true;
+            }
+        }
+        return check;
+    }
 
 }
