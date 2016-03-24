@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ejb;
 
 import entities.Follow;
@@ -10,12 +5,9 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-/**
- *
- * @author Administrator
- */
 @Stateless
 public class FollowFacade extends AbstractFacade<Follow> {
+
     @PersistenceContext(unitName = "ojt_CRMSystem_war_1.0PU")
     private EntityManager em;
 
@@ -27,5 +19,5 @@ public class FollowFacade extends AbstractFacade<Follow> {
     public FollowFacade() {
         super(Follow.class);
     }
-    
+
 }
