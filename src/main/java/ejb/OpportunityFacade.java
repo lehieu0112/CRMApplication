@@ -1,21 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ejb;
 
 import entities.Opportunity;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
-/**
- *
- * @author Administrator
- */
 @Stateless
 public class OpportunityFacade extends AbstractFacade<Opportunity> {
+
     @PersistenceContext(unitName = "ojt_CRMSystem_war_1.0PU")
     private EntityManager em;
 
@@ -27,5 +20,14 @@ public class OpportunityFacade extends AbstractFacade<Opportunity> {
     public OpportunityFacade() {
         super(Opportunity.class);
     }
-    
+
+    public boolean isExistOpportunity(Opportunity opportunity) {
+        boolean isExist = false;
+        Query query = getEntityManager().createNamedQuery("Opportunity.findByOpportunityID");
+        query.setParameter("opportunityID", opportunity.getOpportunityID());
+        if (query.getResultList().size() > 0) {
+            isExist = true;
+        }
+        return isExist;
+    }
 }

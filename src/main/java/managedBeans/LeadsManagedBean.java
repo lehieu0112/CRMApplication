@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package managedBeans;
 
 import ejb.LeadsFacade;
@@ -17,16 +12,13 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author Administrator
- */
 @Named(value = "leadsManagedBean")
 @RequestScoped
 public class LeadsManagedBean {
-    
+
     @Inject
     private LeadsFacade leadEJB;
+    private Leads lead = new Leads();
     @Inject
     private UsersFacade userEJB;
     
@@ -44,7 +36,7 @@ public class LeadsManagedBean {
     public void setListLeads(List<Leads> listLeads) {
         this.listLeads = listLeads;
     }
-    
+
     public List<Leads> getSearchList() {
         return searchList;
     }
@@ -52,6 +44,7 @@ public class LeadsManagedBean {
     public void setSearchList(List<Leads> searchList) {
         this.searchList = searchList;
     }
+
     public Leads getLead() {
         return lead;
     }
@@ -59,7 +52,7 @@ public class LeadsManagedBean {
     public void setLead(Leads lead) {
         this.lead = lead;
     }
-    
+
     public LeadsManagedBean() {
     }
     
@@ -67,23 +60,23 @@ public class LeadsManagedBean {
         lead.setUserID(user);
         if(leadEJB.isExistLeads(lead)){            
             FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_WARN, "Lead Email is Existed",
-                "Lead Email is Existed"));           
-        }else{
+                    new FacesMessage(FacesMessage.SEVERITY_WARN, "Lead Email is Existed",
+                            "Lead Email is Existed"));
+        } else {
             leadEJB.create(lead);
             FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Create Success",
-                "Create Success !"));
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Create Success",
+                            "Create Success !"));
             lead = new Leads();
-        }  
+        }
         return "addlead.xhtml";
     }
-    
-    public List<Leads> doFindAllLeads(){
+
+    public List<Leads> doFindAllLeads() {
         return leadEJB.findAll();
     }
-    
-    public String doEditLead(Integer id){
+
+    public String doEditLead(Integer id) {
         lead = leadEJB.find(id);
         return "editlead.xhtml";
     }
@@ -92,13 +85,13 @@ public class LeadsManagedBean {
         lead.setUserID(user);
         leadEJB.edit(lead);
         FacesContext.getCurrentInstance().addMessage(null,
-                new FacesMessage(FacesMessage.SEVERITY_INFO, "Edit Success",
-                "Edit Success !"));
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Edit Success", "Edit Success !"));
         return "editlead.xhtml";
     }
-    
-    public String doDeleteLead(Integer id){
+
+    public String doDeleteLead(Integer id) {
         leadEJB.remove(leadEJB.find(id));
         return "listleads.xhtml";
     }
+
 }

@@ -36,7 +36,7 @@
                                     <f:facet name="header">
                                         Expand rows to see detailed information
                                     </f:facet>
-                                    <p:column style="width:16px">
+                                    <p:column style="width: 16px">
                                         <p:rowToggler />
                                     </p:column>
                                     <p:column filterBy="#{item.leadName}" filterMatchMode="contains">
@@ -45,7 +45,6 @@
                                         </f:facet>
                                         <h:outputText value="#{item.leadName}"/>
                                     </p:column>
-
                                     <p:column filterBy="#{item.leadAddress}" filterMatchMode="contains">
                                         <f:facet name="header">
                                             <h:outputText value="LeadAddress"/>
@@ -71,7 +70,6 @@
                                         </f:facet>
                                         <h:outputText value="#{item.leadEmail}"/>
                                     </p:column>
-
                                     <p:column>
                                         <f:facet name="header">
                                             <h:outputText value="Action"/>
@@ -80,11 +78,10 @@
                                         <h:commandButton styleClass="button" value="Delete" action="#{leadsManagedBean.doDeleteLead(item.leadID)}">
                                             <f:ajax execute="@form" render="@form"/>
                                         </h:commandButton>
-
                                     </p:column>
 
                                     <p:rowExpansion>
-                                        <p:panelGrid  columns="2" columnClasses="label,value" style="width:400px">
+                                        <p:panelGrid  columns="2" columnClasses="label,value" style="width: 400px">
                                             <f:facet name="header">
                                                 <h:outputText value="Infomation"/> 
                                             </f:facet>
@@ -122,7 +119,6 @@
                 </p:layout>
             </ui:define>
         </ui:composition>
-
     </body>
 </html>
 

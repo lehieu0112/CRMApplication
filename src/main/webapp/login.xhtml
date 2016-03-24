@@ -19,6 +19,7 @@
                         <h:outputLabel>
                             <p:selectBooleanCheckbox value="#{loginManagedBean.rememberme}" style="margin-top: 5px;"/> Remember me
                         </h:outputLabel>
+                        <p:link outcome="emailvalidate.xhtml" value="Forgot password?"/>
                     </h:panelGrid>
                     <p:messages id="messages" autoUpdate="true" closable="true" />
                     <p:commandButton action="#{loginManagedBean.doCheckLogin()}"

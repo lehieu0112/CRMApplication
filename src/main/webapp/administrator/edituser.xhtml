@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        <ui:composition template="./../layout/layout.xhtml">
+            <ui:define name="content">
+                <f:metadata>
+                    <f:viewParam name="userID" value="#{adminManagedBean.user.userID}"/>
+                    <f:viewAction action="#{adminManagedBean.doFindUserByID()}"/>
+                </f:metadata>
+                <p:layout style="min-width:800px; height:800px;">
+                    <p:layoutUnit position="west" size="215">
+                        <h:form>        
+                            <p:menu style="width:195px; height:776px">
+                                <p:submenu label="Users Management" styleClass="bar">
+                                    <p:menuitem value="Create a new User" outcome="/administration/adduser.xhtml"/>
+                                    <p:menuitem value="View all Users" outcome="/administration/listusers.xhtml"/>
+                                </p:submenu>
+                            </p:menu>
+                        </h:form>
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="center">
+                        <f:view>
+                            <h:form styleClass="createform">
+                                <h2><h:outputText value="Create a new User"/></h2><br></br>
+                                <p:panelGrid columns="2" id="grid">                                 
+                                    <p:outputLabel value="FullName:" for="userFullName" />
+                                    <p:inputText id="userFullName" value="#{adminManagedBean.user.userFullName}" title="Full Name" 
+                                                 required="true" requiredMessage="Enter FullName">
+                                        <f:validateLength minimum="6"/>
+                                    </p:inputText>
+                                    <p:outputLabel value="Address:" for="userAddress" />
+                                    <p:inputText id="userAddress" value="#{adminManagedBean.user.userAddress}" title="Address" 
+                                                 required="true" requiredMessage="Enter Address">
+                                        <f:validateLength minimum="8"/>
+                                    </p:inputText>
+                                    <p:outputLabel value="Phone:" for="userPhone" />
+                                    <p:inputText id="userPhone" value="#{adminManagedBean.user.userPhone}" title="Phone" 
+                                                 required="true" requiredMessage="Enter Phone Number">
+                                        <f:validateLength minimum="8"/>
+                                    </p:inputText>
+                                    <p:outputLabel value="Email:" for="userEmail" />
+                                    <p:inputText id="userEmail" value="#{adminManagedBean.user.userEmail}" title="Email" 
+                                                 required="true" requiredMessage="Enter Email" placeholder="abc123@mail.com">
+                                        <f:validateLength minimum="7"/><f:validateRegex pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"/>
+                                    </p:inputText>
+                                    <p:outputLabel value="DateCreated:" for="dateCreated" />
+                                    <p:calendar id="dateCreated" value="#{adminManagedBean.user.dateCreated}" title="Date Created"
+                                                required="true" requiredMessage="Enter Date created" locale="us" navigator="true"
+                                                pattern="dd-MM-yyyy" mask="true" showOn="button">
+                                    </p:calendar>
+                                    <p:outputLabel value="Login Name:" for="loginName" />
+                                    <p:inputText id="loginName" value="#{adminManagedBean.user.loginName}" title="Login Name" 
+                                                 required="true" requiredMessage="Enter Login Name">
+                                        <f:validateLength minimum="8"/>
+                                    </p:inputText>
+                                    <p:outputLabel value="Login Password:" for="loginPass" />
+                                    <p:password id="loginPass" value="#{adminManagedBean.user.loginPass}" title="Login Password" 
+                                                required="true" requiredMessage="Enter Login Password">
+                                        <f:validateLength minimum="6"/>
+                                    </p:password>
+                                    <p:outputLabel value="User Role:" for="userRole" />
+                                    <p:selectOneMenu id="userRole" value="#{adminManagedBean.user.userRole}" style="width:125px" 
+                                                     required="true" requiredMessage="Choose user role">
+                                        <f:selectItem itemLabel="Select One" itemValue="" />
+                                        <f:selectItem itemLabel="Sale Man" itemValue="saleman" />
+                                        <f:selectItem itemLabel="Sale Manager" itemValue="salemanager" />
+                                        <f:selectItem itemLabel="Administration" itemValue="administration" />
+                                    </p:selectOneMenu>
+                                    <p:outputLabel value="Active:" for="isActive" />
+                                    <p:selectOneMenu id="isActive" value="#{adminManagedBean.user.isActive}" style="width:125px" 
+                                                     required="true" requiredMessage="Choose user isActive">
+                                        <f:selectItem itemLabel="Non-Active" itemValue="nonactive" />
+                                        <f:selectItem itemLabel="Active" itemValue="active" />
+                                    </p:selectOneMenu>
+                                </p:panelGrid><br></br>
+                                <p:messages id="messages" autoUpdate="true" closable="true" />
+                                <h:commandButton styleClass="button" value="Apply" action="#{adminManagedBean.doEditUser()}">  
+                                    <f:ajax execute="@form" render="@form"/>
+                                </h:commandButton>
+                            </h:form>
+                        </f:view>
+                    </p:layoutUnit>
+                </p:layout>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

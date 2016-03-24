@@ -1,22 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ejb;
 
 import entities.Users;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-/**
- *
- * @author Administrator
- */
 @Stateless
 public class UsersFacade extends AbstractFacade<Users> {
+
     @PersistenceContext(unitName = "ojt_CRMSystem_war_1.0PU")
     private EntityManager em;
 
@@ -51,4 +44,40 @@ public class UsersFacade extends AbstractFacade<Users> {
         }
         return user;
     }
+
+    public void activeUser(Integer userID) {
+        Query query = em.createQuery("update Users u set u.isActive = 'true' where u.userID = ?1");
+        query.setParameter(1, userID);
+        query.executeUpdate();
+    }
+
+    public void deactiveUser(Integer userID) {
+        Query query = em.createQuery("update Users u set u.isActive = 'false' where u.userID = ?1");
+        query.setParameter(1, userID);
+        query.executeUpdate();
+    }
+
+    public boolean isExistUsers(Users user) {
+        boolean isExist = false;
+        Query query = em.createNamedQuery("Users.findByUserEmail");
+        query.setParameter("userEmail", user.getUserEmail());
+        if (query.getResultList().size() > 0) {
+            isExist = true;
+        }
+        return isExist;
+    }
+
+    public void resetPass(String userEmail, String loginPass) {
+        Query query = em.createNativeQuery("update Users set loginPass = ?1 where userEmail = ?2");
+        query.setParameter(1, loginPass);
+        query.setParameter(2, userEmail);
+        query.executeUpdate();
+    }
+
+    public List<Users> doFindUserByEmail(Users user) {
+        Query query = em.createNamedQuery("Users.findByUserEmail");
+        query.setParameter("userEmail", user.getUserEmail());
+        return query.getResultList();
+    }
+
 }
