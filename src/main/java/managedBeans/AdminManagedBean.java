@@ -107,10 +107,10 @@ public class AdminManagedBean {
             try {
                 MailUtil.sendEmail(to, from, subject, body, isBodyHTML);
                 FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Send Email Success", "Send Email Success"));
+                        new FacesMessage(FacesMessage.SEVERITY_INFO, "Send Email Success", "Send Email Success"));
             } catch (MessagingException ex) {
                 FacesContext.getCurrentInstance().addMessage(null,
-                        new FacesMessage(FacesMessage.SEVERITY_WARN, "Send Email Fail", "Send Email Fail"));
+                        new FacesMessage(FacesMessage.SEVERITY_ERROR, "Send Email Fail", "Send Email Fail"));
             }
         } else {
             FacesContext.getCurrentInstance().addMessage(null,
@@ -125,7 +125,7 @@ public class AdminManagedBean {
             userEJB.resetPass(userEmail, loginPass);
             emailkeyEJB.remove(emailkey);
             FacesContext.getCurrentInstance().addMessage(null,
-                    new FacesMessage(FacesMessage.SEVERITY_WARN, "Reset password success", "Reset password success"));
+                    new FacesMessage(FacesMessage.SEVERITY_INFO, "Reset password success", "Reset password success"));
         } else {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_WARN, "Link has been deleted", "Link has been deleted"));

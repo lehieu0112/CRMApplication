@@ -69,15 +69,15 @@
                                         <f:facet name="header">
                                             <h:outputText value="Action"/>
                                         </f:facet>
-                                        <p:commandButton value="Active" action="#{adminManagedBean.doActive(item.userID)}">
+                                        <h:commandButton styleClass="button" value="Active" action="#{adminManagedBean.doActive(item.userID)}">
                                             <f:ajax execute="@form" render="@form"/>
-                                        </p:commandButton>
-                                        <p:commandButton value="De-Active" action="#{adminManagedBean.doDeActive(item.userID)}">
+                                        </h:commandButton>
+                                        <h:commandButton styleClass="button" style="width: 80px;" value="De-Active" action="#{adminManagedBean.doDeActive(item.userID)}">
                                             <f:ajax execute="@form" render="@form"/>
-                                        </p:commandButton>
-                                        <p:commandButton value="Delete" action="#{adminManagedBean.doDeleteUser(item.userID)}">
+                                        </h:commandButton>
+                                        <h:commandButton styleClass="button" value="Delete" action="#{adminManagedBean.doDeleteUser(item.userID)}">
                                             <f:ajax execute="@form" render="@form"/>
-                                        </p:commandButton>
+                                        </h:commandButton>
                                     </p:column>
 
                                     <p:rowExpansion>
