@@ -46,13 +46,13 @@ public class UsersFacade extends AbstractFacade<Users> {
     }
 
     public void activeUser(Integer userID) {
-        Query query = em.createQuery("update Users u set u.isActive = 'true' where u.userID = ?1");
+        Query query = em.createQuery("update Users u set u.isActive = true where u.userID = ?1");
         query.setParameter(1, userID);
         query.executeUpdate();
     }
 
     public void deactiveUser(Integer userID) {
-        Query query = em.createQuery("update Users u set u.isActive = 'false' where u.userID = ?1");
+        Query query = em.createQuery("update Users u set u.isActive = false where u.userID = ?1");
         query.setParameter(1, userID);
         query.executeUpdate();
     }
@@ -68,7 +68,7 @@ public class UsersFacade extends AbstractFacade<Users> {
     }
 
     public void resetPass(String userEmail, String loginPass) {
-        Query query = em.createNativeQuery("update Users set loginPass = ?1 where userEmail = ?2");
+        Query query = em.createQuery("UPDATE Users u SET u.loginPass=?1 WHERE u.userEmail=?2");
         query.setParameter(1, loginPass);
         query.setParameter(2, userEmail);
         query.executeUpdate();

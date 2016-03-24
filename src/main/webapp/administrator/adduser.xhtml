@@ -14,8 +14,11 @@
                         <h:form>        
                             <p:menu style="width:195px; height:776px">
                                 <p:submenu label="Users Management" styleClass="bar">
-                                    <p:menuitem value="Create a new User" outcome="/administration/adduser.xhtml"/>
-                                    <p:menuitem value="View all Users" outcome="/administration/listusers.xhtml"/>
+                                    <p:menuitem value="Create a new User" outcome="adduser.xhtml"/>
+                                    <p:menuitem value="View all Users" outcome="listusers.xhtml"/>
+                                </p:submenu>
+                                <p:submenu label="Profile Management" styleClass="bar">
+                                    <p:menuitem value="Log out" action="#{loginManagedBean.doLogOut()}"/>
                                 </p:submenu>
                             </p:menu>
                         </h:form>
@@ -67,14 +70,12 @@
                                         <f:selectItem itemLabel="Select One" itemValue="" />
                                         <f:selectItem itemLabel="Sale Man" itemValue="saleman" />
                                         <f:selectItem itemLabel="Sale Manager" itemValue="salemanager" />
-                                        <f:selectItem itemLabel="Administration" itemValue="administration" />
+                                        <f:selectItem itemLabel="Administration" itemValue="administrator" />
                                     </p:selectOneMenu>
                                     <p:outputLabel value="Active:" for="isActive" />
-                                    <p:selectOneMenu id="isActive" value="#{adminManagedBean.user.isActive}" style="width:125px" 
-                                                     required="true" requiredMessage="Choose user isActive">
-                                        <f:selectItem itemLabel="Non-Active" itemValue="nonactive" />
-                                        <f:selectItem itemLabel="Active" itemValue="active" />
-                                    </p:selectOneMenu>
+                                    <p:selectBooleanCheckbox id="isActive" value="#{adminManagedBean.user.isActive}" style="width:125px" 
+                                                     required="true" requiredMessage="Choose user isActive"/>
+                                        
                                 </p:panelGrid><br></br>
                                 <p:messages id="messages" autoUpdate="true" closable="true" />
                                 <h:commandButton styleClass="button" value="Add new User" action="#{adminManagedBean.doCreateUser()}" 

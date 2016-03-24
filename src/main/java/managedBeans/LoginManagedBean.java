@@ -28,9 +28,12 @@ public class LoginManagedBean implements Serializable {
 
     @Inject
     private UsersFacade userEJB;
+    
     private String username;
     private String password;
-    private Users userlogin = new Users();
+    private HttpSession session = (HttpSession) FacesContext.
+                    getCurrentInstance().getExternalContext().getSession(false);
+    private Users userlogin = (Users)session.getAttribute("userlogin");
     private boolean rememberme = false;
 
     public boolean isRememberme() {
@@ -125,6 +128,13 @@ public class LoginManagedBean implements Serializable {
             }
         }
         return "/login.xhtml";
+    }
+    
+    public String doUpdateProfile() {
+        userEJB.edit(userlogin);
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Edit Success", "Edit Success !"));
+        return "editprofile.xhtml";
     }
 
 }

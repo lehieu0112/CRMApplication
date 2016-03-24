@@ -4,6 +4,7 @@ import ejb.EmailkeyFacade;
 import ejb.UsersFacade;
 import entities.Emailkey;
 import entities.Users;
+import java.io.Serializable;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -15,32 +16,36 @@ import util.MailUtil;
 
 @Named(value = "adminManagedBean")
 @RequestScoped
-public class AdminManagedBean {
+public class AdminManagedBean implements Serializable {
 
     @Inject
     private UsersFacade userEJB;
-    private Users user = new Users();
-
     @Inject
     private EmailkeyFacade emailkeyEJB;
+    
     private Emailkey emailkey = new Emailkey();
-
-    public void setUser(Users user) {
-        this.user = user;
+    private Users user = new Users();
+    
+    public Emailkey getEmailkey() {
+        return emailkey;
     }
 
+    public void setEmailkey(Emailkey emailkey) {
+        this.emailkey = emailkey;
+    }
+    
     public Users getUser() {
         return user;
     }
 
-    public void setEmailKey(Emailkey emailkey) {
-        this.emailkey = emailkey;
+    public void setUser(Users user) {
+        this.user = user;
     }
-
-    public Emailkey getEmailKey() {
-        return emailkey;
+    
+    public AdminManagedBean() {
     }
-
+    
+   
     public String doCreateUser() {
         if (userEJB.isExistUsers(user)) {
             FacesContext.getCurrentInstance().addMessage(null,
@@ -53,13 +58,14 @@ public class AdminManagedBean {
         }
         return "adduser.xhtml";
     }
+    
+    public String doEdit(Integer id){
+        user = userEJB.find(id);
+        return "edituser.xhtml";
+    }
 
     public List<Users> doFindAllUsers() {
         return userEJB.findAll();
-    }
-
-    public void doFindUserByID() {
-        this.user = userEJB.find(user.getUserID());
     }
 
     public void doFindUserByEmail() {
@@ -99,7 +105,7 @@ public class AdminManagedBean {
             String subject = "Reset Your Password from Webshop";
             String body = "Thanks for use webshop from us. "
                     + "You must check this link to reset your password to login webshop.\n"
-                    + "http://localhost:8080/CRMSystem/faces/resetpassword.xhtml?userEmail=" + userEmail
+                    + "http://localhost:8080/CRMSystem/resetpassword.xhtml?userEmail=" + userEmail
                     + "&keyID=" + keyID + "\n"
                     + "Please contact us if you have any questions.\n"
                     + "Have a great day and thanks again!\n";

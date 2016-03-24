@@ -14,8 +14,11 @@
                         <h:form>        
                             <p:menu style="width:195px; height:776px">
                                 <p:submenu label="Users Management" styleClass="bar">
-                                    <p:menuitem value="Create a new User" outcome="/administration/adduser.xhtml"/>
-                                    <p:menuitem value="View all Users" outcome="/administration/listusers.xhtml"/>
+                                    <p:menuitem value="Create a new User" outcome="adduser.xhtml"/>
+                                    <p:menuitem value="View all Users" outcome="listusers.xhtml"/>
+                                </p:submenu>
+                                <p:submenu label="Profile Management" styleClass="bar">
+                                    <p:menuitem value="Log out" action="#{loginManagedBean.doLogOut()}"/>
                                 </p:submenu>
                             </p:menu>
                         </h:form>
@@ -38,8 +41,7 @@
                                         <f:facet name="header">
                                             <h:outputText value="Email"/>
                                         </f:facet>
-                                        <p:link outcome="/administration/edituser.xhtml?userID=#{item.userID}" 
-                                                value="#{item.userEmail}"/>
+                                        <h:outputText  value="#{item.userEmail}"/>
                                     </p:column>
                                     <p:column filterBy="#{item.loginName}" filterMatchMode="contains">
                                         <f:facet name="header">
@@ -65,10 +67,13 @@
                                         </f:facet>
                                         <h:outputText value="#{item.isActive ? 'Active': 'Non'}" />
                                     </p:column>
-                                    <p:column style="width: 230px;">
+                                    <p:column style="width: 260px;">
                                         <f:facet name="header">
                                             <h:outputText value="Action"/>
                                         </f:facet>
+                                        <h:commandButton styleClass="button" value="Edit" action="#{adminManagedBean.doEdit(item.userID)}">
+                                            <f:ajax execute="@form" render="@form"/>
+                                        </h:commandButton>
                                         <h:commandButton styleClass="button" value="Active" action="#{adminManagedBean.doActive(item.userID)}">
                                             <f:ajax execute="@form" render="@form"/>
                                         </h:commandButton>

@@ -20,14 +20,5 @@ public class OpportunityFacade extends AbstractFacade<Opportunity> {
     public OpportunityFacade() {
         super(Opportunity.class);
     }
-
-    public boolean isExistOpportunity(Opportunity opportunity) {
-        boolean isExist = false;
-        Query query = getEntityManager().createNamedQuery("Opportunity.findByOpportunityID");
-        query.setParameter("opportunityID", opportunity.getOpportunityID());
-        if (query.getResultList().size() > 0) {
-            isExist = true;
-        }
-        return isExist;
-    }
+  
 }

@@ -4,6 +4,7 @@ import ejb.LeadsFacade;
 import ejb.UsersFacade;
 import entities.Leads;
 import entities.Users;
+import java.io.Serializable;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -14,16 +15,15 @@ import javax.servlet.http.HttpSession;
 
 @Named(value = "leadsManagedBean")
 @RequestScoped
-public class LeadsManagedBean {
+public class LeadsManagedBean implements Serializable {
 
     @Inject
-    private LeadsFacade leadEJB;
-    private Leads lead = new Leads();
+    private LeadsFacade leadEJB;   
     @Inject
     private UsersFacade userEJB;
     
     private HttpSession session = (HttpSession) FacesContext.
-                    getCurrentInstance().getExternalContext().getSession(false);
+                    getCurrentInstance().getExternalContext().getSession(false);   
     private Leads lead = new Leads();
     private List<Leads> searchList;
     private List<Leads> listLeads;

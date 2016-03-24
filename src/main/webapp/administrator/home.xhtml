@@ -13,8 +13,11 @@
                         <h:form>        
                             <p:menu style="width:195px; height:776px">
                                 <p:submenu label="Users Management" styleClass="bar">
-                                    <p:menuitem value="Create a new User" outcome="/administration/adduser.xhtml"/>
-                                    <p:menuitem value="View all Users" outcome="/administration/listusers.xhtml"/>
+                                    <p:menuitem value="Create a new User" outcome="adduser.xhtml"/>
+                                    <p:menuitem value="View all Users" outcome="listusers.xhtml"/>
+                                </p:submenu>
+                                <p:submenu label="Profile Management" styleClass="bar">
+                                    <p:menuitem value="Log out" action="#{loginManagedBean.doLogOut()}"/>
                                 </p:submenu>
                             </p:menu>
                         </h:form>
