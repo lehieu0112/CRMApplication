@@ -19,31 +19,24 @@
                     <p:layoutUnit id="center_table" position="center">
                         <f:view>
                             <h:form styleClass="listform">
-                                <h1><h:outputText value="List all products"/></h1>
+                                <h1><h:outputText value="View products"/></h1>
                                 <br></br>
-                                <p:dataTable value="#{productManagedBean.doFindAllProducts()}" var="item"
-                                             rows="15" paginator="true" widgetVar="productsTable"
-                                             emptyMessage="No product found" filteredValue="#{productManagedBean.searchList}">
-                                    <f:facet name="header">
-                                        <p:outputPanel>
-                                            <h:outputText value="Search all fields:" />
-                                            <p:inputText id="globalFilter" onkeyup="PF('productsTable').filter()" style="width: 150px" placeholder="Enter keyword"/>
-                                        </p:outputPanel>
-                                    </f:facet>
-                                    
-                                    <p:column filterBy="#{item.productName}" filterMatchMode="contains">
+                                <p:dataTable value="#{campaignManagedBean.campaign.productsList}" var="item"
+                                             rows="15" paginator="true">
+                                
+                                    <p:column>
                                         <f:facet name="header">
                                             <h:outputText value="Name"/>
                                         </f:facet>
                                         <h:link outcome="editproduct.xhtml?id=#{item.productID}" value="#{item.productName}"/>
                                     </p:column>
-                                    <p:column filterBy="#{item.productDescription}" filterMatchMode="contains">
+                                    <p:column>
                                         <f:facet name="header">
                                             <h:outputText value="Description"/>
                                         </f:facet>
                                         <h:outputText value="#{item.productDescription}"/>
                                     </p:column>
-                                    <p:column filterBy="#{item.productPrice}" filterMatchMode="contains">
+                                    <p:column>
                                         <f:facet name="header">
                                             <h:outputText value="Price"/>
                                         </f:facet>
@@ -51,24 +44,13 @@
                                             <f:convertNumber type="number"/>
                                         </h:outputText>
                                     </p:column>
-                                    <p:column filterBy="#{item.campaignID.campaignDescription}" filterMatchMode="contains">
+                                    <p:column>
                                         <f:facet name="header">
                                             <h:outputText value="Campaign Name"/>
                                         </f:facet>
                                         <h:outputText value="#{item.campaignID.campaignDescription}"/>
                                     </p:column>
-                                    <p:column style="width: 200px;">
-                                        <f:facet name="header">
-                                            <h:outputText value="Action"/>
-                                        </f:facet>
-                                        <h:commandButton styleClass="button" value="Edit" 
-                                                         action="#{productManagedBean.editProduct(item.productID)}">
-                                        </h:commandButton>
-                                        <h:commandButton styleClass="button" value="Delete" 
-                                                         action="#{productManagedBean.doDeleteProduct(item.productID)}">
-                                            <f:ajax execute="@form" render="@form"/>
-                                        </h:commandButton>
-                                    </p:column>
+                                    
                                 </p:dataTable>
                             </h:form>
                         </f:view>

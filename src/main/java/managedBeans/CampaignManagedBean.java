@@ -28,7 +28,7 @@ public class CampaignManagedBean {
     private Users user = (Users) session.getAttribute("userlogin");
     private Campaign campaign = new Campaign();
     private List<Campaign> searchList;
-
+ 
     public List<Campaign> getSearchList() {
         return searchList;
     }
@@ -86,4 +86,12 @@ public class CampaignManagedBean {
         campaignEJB.remove(campaignEJB.find(id));
         return "listcampaign.xhtml";
     }
+    
+    public String viewProducts(Integer id){
+        campaign.setProductsList(campaignEJB.getProducts(campaignEJB.find(id)));
+        return "viewproducts.xhtml";
+    }
+    
+    
+    
 }

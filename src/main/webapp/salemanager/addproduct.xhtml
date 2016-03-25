@@ -1,14 +1,59 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <body>
 
         <ui:composition template="./../layout/layout.xhtml">
 
             <ui:define name="content">
-                content
+                <p:layout style="min-width:800px; height:800px;">
+                    <p:layoutUnit position="west" size="215">
+                        <ui:include src="/salemanager/menu.xhtml"/>
+                    </p:layoutUnit>                    
+
+                    <p:layoutUnit position="center">
+                        <f:view>
+                            <h:form styleClass="createform">
+                                <h2><h:outputText value="Create a new Product"/></h2><br></br>
+                                <p:panelGrid columns="2" id="grid">                                 
+                                    <p:outputLabel value="Name:" for="productName" />
+                                    <p:inputText id="productName" value="#{productManagedBean.product.productName}" title="Product Name" 
+                                                 required="true" requiredMessage="Enter Product Name">
+                                        <f:validateLength minimum="1"/>
+                                    </p:inputText>
+                                    <p:outputLabel value="Description:" for="productDescription" />
+                                    <p:inputTextarea rows="6" cols="55" id="productDescription" value="#{productManagedBean.product.productDescription}" title="Product Description" 
+                                                     required="true" requiredMessage="Enter Product Description">
+                                        <f:validateLength minimum="8"/>
+                                    </p:inputTextarea>
+                                    <p:outputLabel value="Price:" for="productPrice" />
+                                    <p:inputText id="productPrice" value="#{productManagedBean.product.productPrice}" title="Product Price" 
+                                                 required="true" requiredMessage="Enter Product Price">
+                                        <f:validateLength minimum="5"/>
+                                    </p:inputText>
+                                    <p:outputLabel value="Campaign Name:" for="campaignID" />
+                                    <p:selectOneMenu id="campaignID" value="#{productManagedBean.campaignID}"
+                                                     required="true" requiredMessage="Choose campaign">                                      
+                                        <c:forEach var="c" items="#{productManagedBean.getlistCampaign()}">
+                                            <f:selectItem itemLabel="#{c.campaignDescription}" itemValue="#{c.campaignID}"/>
+                                        </c:forEach>
+                                    </p:selectOneMenu>
+                                </p:panelGrid><br></br>
+                                <p:messages id="messages" autoUpdate="true" closable="true" />
+                                <h:commandButton styleClass="button" value="Add new Product" action="#{productManagedBean.doCreateProduct()}" 
+                                                 style="margin-left: 20%;">  
+                                    <f:ajax execute="@form" render="@form"/>
+                                </h:commandButton>
+                            </h:form>
+                        </f:view>
+                    </p:layoutUnit>
+                </p:layout>
             </ui:define>
 
         </ui:composition>
