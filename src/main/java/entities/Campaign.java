@@ -59,7 +59,7 @@ public class Campaign implements Serializable {
     private Date endDate;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "budget")
-    private Double budget;
+    private double budget;
     @JoinColumn(name = "userID", referencedColumnName = "userID")
     @ManyToOne(optional = false)
     private Users userID;
@@ -105,11 +105,11 @@ public class Campaign implements Serializable {
         this.endDate = endDate;
     }
 
-    public Double getBudget() {
+    public double getBudget() {
         return budget;
     }
 
-    public void setBudget(Double budget) {
+    public void setBudget(double budget) {
         this.budget = budget;
     }
 

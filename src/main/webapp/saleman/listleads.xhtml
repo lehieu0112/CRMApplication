@@ -11,20 +11,7 @@
             <ui:define name="content">
                 <p:layout style="min-width:800px;height:800px;">
                     <p:layoutUnit position="west" size="215">
-                        <h:form>        
-                            <p:menu style="width:195px; height:776px">
-                                <p:submenu label="Leads Management" styleClass="bar">
-                                    <p:menuitem value="Create a new Lead" outcome="addlead.xhtml"/>
-                                    <p:menuitem value="View all Leads" outcome="listleads.xhtml"/>                                 
-                                </p:submenu>
-                                <p:submenu label="Opportunity Management" styleClass="bar">
-                                </p:submenu>
-                                <p:submenu label="Profile Management" styleClass="bar">
-                                    <p:menuitem value="Update Profile" outcome="editprofile.xhtml"/>
-                                    <p:menuitem value="Log out" action="#{loginManagedBean.doLogOut()}"/>
-                                </p:submenu>
-                            </p:menu>
-                        </h:form>
+                        <ui:include src="menu.xhtml"/>
                     </p:layoutUnit>
 
                     <p:layoutUnit id="center_table" position="center">

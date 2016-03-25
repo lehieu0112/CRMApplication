@@ -10,17 +10,7 @@
             <ui:define name="content">
                 <p:layout style="min-width:800px; height:800px;">
                     <p:layoutUnit position="west" size="215">
-                        <h:form>        
-                            <p:menu style="width:195px; height:776px">
-                                <p:submenu label="Users Management" styleClass="bar">
-                                    <p:menuitem value="Create a new User" outcome="adduser.xhtml"/>
-                                    <p:menuitem value="View all Users" outcome="listusers.xhtml"/>
-                                </p:submenu>
-                                <p:submenu label="Profile Management" styleClass="bar">
-                                    <p:menuitem value="Log out" action="#{loginManagedBean.doLogOut()}"/>
-                                </p:submenu>
-                            </p:menu>
-                        </h:form>
+                        <ui:include src="menu.xhtml"/>
                     </p:layoutUnit>
                     <p:layoutUnit position="center">
                         <h1>Welcome to Administration</h1>
