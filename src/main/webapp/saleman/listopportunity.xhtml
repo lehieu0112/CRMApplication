@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../layout/layout.xhtml">
+
+            <ui:define name="content">
+                <p:layout style="min-width:800px;height:800px;">
+                    <p:layoutUnit position="west" size="215">
+                        <ui:include src="menu.xhtml"/>
+                    </p:layoutUnit>
+
+                    <p:layoutUnit id="center_table" position="center">
+                        <f:view>
+                            <h:form styleClass="listform">
+                                <h1><h:outputText value="List all Opportunities"/></h1>
+                                <p:dataTable value="#{opportunityManagedBean.doFindAllOpportunity()}" var="item"
+                                             filteredValue="#{leadsManagedBean.searchList}"
+                                             rows="15" paginator="true">
+                                    <p:column style="width:260px;" styleClass="buttonlist">
+                                        <f:facet name="header">
+                                            <h:outputText value="Action"/>
+                                        </f:facet>
+                                        <p:button value="Add Follow" outcome="addfollow.xhtml?fid=#{item.opportunityID}"/>
+                                        <p:button value="Make Order" outcome="makeorder.xhtml?id=#{item.opportunityID}"/>
+                                        
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="OpportunityDate"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.opportunityDate}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Quantity"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.quantity}"/>
+                                    </p:column>
+                                    <p:column filterBy="#{item.leadID.leadName}"  filterMatchMode="contains">
+                                        <f:facet name="header">
+                                            <h:outputText value="LeadName"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.leadID.leadName}"/>
+                                    </p:column>
+                                    <p:column filterBy="#{item.productID.productName}" filterMatchMode="contains">
+                                        <f:facet name="header">
+                                            <h:outputText value="ProductName"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.productID.productName}"/>
+                                    </p:column>
+                                    
+                                </p:dataTable>
+                            </h:form>
+                        </f:view>
+
+                    </p:layoutUnit>
+                </p:layout>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

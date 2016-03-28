@@ -27,6 +27,10 @@
                                     <p:column style="width: 16px">
                                         <p:rowToggler />
                                     </p:column>
+                                    <p:column style="width: 135px">
+                                        <p:button outcome="addopportunity.xhtml?leadid=#{item.leadID}" 
+                                                  value="Add Opportunity" />
+                                    </p:column>
                                     <p:column filterBy="#{item.leadName}" filterMatchMode="contains">
                                         <f:facet name="header">
                                             <h:outputText value="LeadName"/>
@@ -66,6 +70,7 @@
                                         <h:commandButton styleClass="button" value="Delete" action="#{leadsManagedBean.doDeleteLead(item.leadID)}">
                                             <f:ajax execute="@form" render="@form"/>
                                         </h:commandButton>
+                                        
                                     </p:column>
 
                                     <p:rowExpansion>

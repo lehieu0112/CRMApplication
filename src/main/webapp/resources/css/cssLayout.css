@@ -92,3 +92,7 @@
     border-radius: 3px;
     background-color: #c2dfef;
 }
+
+.buttonlist button{
+    width: 120px;
+}

@@ -61,6 +61,7 @@ public class Follow implements Serializable {
     private Opportunity opportunityID;
 
     public Follow() {
+        opportunityID = new Opportunity();
     }
 
     public Follow(Integer followID) {

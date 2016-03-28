@@ -65,6 +65,8 @@ public class Opportunity implements Serializable {
     private List<Follow> followList;
 
     public Opportunity() {
+        leadID = new Leads();
+        productID = new Products();
     }
 
     public Opportunity(Integer opportunityID) {

@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../layout/layout.xhtml">
+            <f:metadata>
+                <f:viewParam name="fid" value="#{followManagedBean.follow.opportunityID.opportunityID}"/>
+                <f:viewAction action="#{followManagedBean.doAddOpportunity}"/>
+            </f:metadata>
+            <ui:define name="content">
+                <p:layout style="min-width:800px;height:800px;">
+                    <p:layoutUnit position="west" size="215">
+                        <ui:include src="menu.xhtml"/>
+                    </p:layoutUnit>
+
+                    <p:layoutUnit id="center_table" position="center">
+                        <f:view>
+                            <h:form styleClass="createform">
+                                <h2><h:outputText value="Create a new follow"/></h2><br></br>
+                                <p:panelGrid columns="2" id="grid">
+                                    <p:outputLabel value="Date:" for="followDate" />
+                                    <p:calendar id="followDate" value="#{followManagedBean.follow.followDate}" title="Follow Date" 
+                                                required="true" requiredMessage="Enter Follow Date" locale="us" navigator="true"
+                                                pattern="dd-MM-yyyy" mask="true" showOn="button">
+                                    </p:calendar>
+                                    <p:outputLabel value="LeadName:" for="leadName" />
+                                    <p:inputText id="leadName" value="#{followManagedBean.follow.opportunityID.leadID.leadName}" title="Opportunity ID" 
+                                                 required="true" disabled="true">
+                                    </p:inputText>
+                                    <p:outputLabel value="Content:" for="followContent" />
+                                    <p:inputText id="followContent" value="#{followManagedBean.follow.followContent}" title="Follow Content" 
+                                                 required="true" requiredMessage="Enter Follow Content">
+                                        <f:validateLength minimum="8"/>
+                                    </p:inputText>
+                                    <p:outputLabel value="Response:" for="followResponse" />
+                                    <p:inputTextarea rows="6" cols="55" id="followResponse" value="#{followManagedBean.follow.followResponse}" title="Follow Response"
+                                                     required="true" requiredMessage="Enter Follow Response">
+                                        <f:validateLength minimum="5"/>
+                                    </p:inputTextarea>
+                                    <p:outputLabel value="Next Plan:" for="followNextPlan" />
+                                    <p:inputTextarea rows="6" cols="55" id="followNextPlan" value="#{followManagedBean.follow.followNextPlan}" title="Follow Next Plan"
+                                                     required="true" requiredMessage="Enter Follow Next Plan">
+                                        <f:validateLength minimum="5"/>
+                                    </p:inputTextarea>
+                                </p:panelGrid><br></br>
+                               
+                                <p:messages id="messages" autoUpdate="true" closable="true" />
+                                <h:commandButton styleClass="button" value="Add new follow" action="#{followManagedBean.applyCreateFollow()}"> 
+                                    <f:ajax execute="@form" render="@form"/>
+                                </h:commandButton>
+                            </h:form>
+                        </f:view>
+
+                    </p:layoutUnit>
+                </p:layout>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

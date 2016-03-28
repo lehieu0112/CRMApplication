@@ -64,6 +64,7 @@ public class Orders implements Serializable {
     private Opportunity opportunityID;
 
     public Orders() {
+        opportunityID = new Opportunity();
     }
 
     public Orders(Integer orderID) {
