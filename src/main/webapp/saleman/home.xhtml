@@ -16,8 +16,136 @@
                         <ui:include src="menu.xhtml"/>
                     </p:layoutUnit>
 
-                    <p:layoutUnit position="center">
-                        <h1>Welcome to Sale Management</h1>
+                    <p:layoutUnit position="center">                       
+                        <f:view>
+                            <h:form styleClass="listform">
+                                <h2><h:outputText value="Follows for Today"/></h2>
+                                <p:dataTable value="#{followManagedBean.doFindFollowNow()}" var="item" 
+                                             filteredValue="#{followManagedBean.searchList}"
+                                             rows="20" paginator="true">  
+                                    <f:facet name="header">
+                                        Expand rows to see detailed information
+                                    </f:facet>
+                                    <p:column style="width: 16px">
+                                        <p:rowToggler />
+                                    </p:column>
+                                    <p:column style="width: 200px;">
+                                        <f:facet name="header">
+                                            <h:outputText value="FollowDate"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.followDate}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                                    <p:column style="width: 200px;">
+                                        <f:facet name="header">
+                                            <h:outputText value="NextDate"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.nextDate}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                                    <p:column filterBy="#{item.opportunityID.leadID.leadName}" filterMatchMode="contains"
+                                              style="width: 200px;">
+                                        <f:facet name="header">
+                                            <h:outputText value="LeadName"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.opportunityID.leadID.leadName}"/>
+                                    </p:column>
+                                    <p:column filterBy="#{item.followContent}" filterMatchMode="contains">
+                                        <f:facet name="header">
+                                            <h:outputText value="followContent"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.followContent}"/>
+                                    </p:column>
+                                    
+                                    <p:rowExpansion>
+                                        <p:panelGrid  columns="2" columnClasses="label,value" style="width: 400px">
+                                            <f:facet name="header">
+                                                <h:outputText value="Infomation"/> 
+                                            </f:facet>
+                                            <h:outputText value="Id" />
+                                            <h:outputText value="#{item.followID}" />
+                                            <h:outputText value="Date" />
+                                            <h:outputText value="#{item.followDate}" />                                            
+                                            <h:outputText value="Content" />
+                                            <h:outputText value="#{item.followContent}" />
+                                            <h:outputText value="Response" />
+                                            <h:outputText value="#{item.followResponse}" />
+                                            <h:outputText value="Next Plan" />
+                                            <h:outputText value="#{item.followNextPlan}" />
+                                            <h:outputText value="Next Date" />
+                                            <h:outputText value="#{item.nextDate}" />
+                                        </p:panelGrid>
+                                    </p:rowExpansion>
+                                </p:dataTable>
+                            </h:form>
+                        </f:view><br></br><hr></hr>
+                        
+                        <f:view>
+                            <h:form styleClass="listform">
+                                <h2><h:outputText value="Follows for next Days"/></h2>
+                                <p:dataTable value="#{followManagedBean.doFindFollowNext()}" var="item" 
+                                             filteredValue="#{followManagedBean.searchList}"
+                                             rows="20" paginator="true">  
+                                    <f:facet name="header">
+                                        Expand rows to see detailed information
+                                    </f:facet>
+                                    <p:column style="width: 16px">
+                                        <p:rowToggler />
+                                    </p:column>
+                                    <p:column style="width: 200px;">
+                                        <f:facet name="header">
+                                            <h:outputText value="FollowDate"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.followDate}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                                    <p:column style="width: 200px;">
+                                        <f:facet name="header">
+                                            <h:outputText value="NextDate"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.nextDate}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                                    <p:column filterBy="#{item.opportunityID.leadID.leadName}" filterMatchMode="contains"
+                                              style="width: 200px;">
+                                        <f:facet name="header">
+                                            <h:outputText value="LeadName"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.opportunityID.leadID.leadName}"/>
+                                    </p:column>
+                                    <p:column filterBy="#{item.followContent}" filterMatchMode="contains">
+                                        <f:facet name="header">
+                                            <h:outputText value="followContent"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.followContent}"/>
+                                    </p:column>
+                                    
+                                    <p:rowExpansion>
+                                        <p:panelGrid  columns="2" columnClasses="label,value" style="width: 400px">
+                                            <f:facet name="header">
+                                                <h:outputText value="Infomation"/> 
+                                            </f:facet>
+                                            <h:outputText value="Id" />
+                                            <h:outputText value="#{item.followID}" />
+                                            <h:outputText value="Date" />
+                                            <h:outputText value="#{item.followDate}" />                                            
+                                            <h:outputText value="Content" />
+                                            <h:outputText value="#{item.followContent}" />
+                                            <h:outputText value="Response" />
+                                            <h:outputText value="#{item.followResponse}" />
+                                            <h:outputText value="Next Plan" />
+                                            <h:outputText value="#{item.followNextPlan}" />
+                                            <h:outputText value="Next Date" />
+                                            <h:outputText value="#{item.nextDate}" />
+                                        </p:panelGrid>
+                                    </p:rowExpansion>
+                                </p:dataTable>
+                            </h:form>
+                        </f:view>
                     </p:layoutUnit>
 
                 </p:layout>

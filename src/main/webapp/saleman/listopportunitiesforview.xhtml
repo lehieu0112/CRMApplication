@@ -9,31 +9,39 @@
     <body>
 
         <ui:composition template="./../layout/layout.xhtml">
-            <f:metadata>
-                <f:viewParam name="id" value="#{opportunityManagedBean.id}"/>
-            </f:metadata>
 
             <ui:define name="content">
-                <p:layout style="min-width:800px;height:800px;">
+                <p:layout style="min-width: 800px; height: 800px;">
                     <p:layoutUnit position="west" size="215">
                         <ui:include src="menu.xhtml"/>
                     </p:layoutUnit>
-                    
+
                     <p:layoutUnit id="center_table" position="center">
                         <f:view>
                             <h:form>
-                                <h1><h:outputText value="List Opportunities"/></h1>
-                                <p:dataTable value="#{opportunityManagedBean.doFindOpportunitiesByProduct()}" var="item"
-                                             filteredValue="#{opportunityManagedBean.searchList}"
+                                <h1><h:outputText value="List opportunities for view"/></h1>
+                                <p:dataTable value="#{viewManagedBean.opportunityList}" var="item"
+                                             filteredValue="#{viewManagedBean.searchList}"
                                              rows="15" paginator="true">
-                                    
                                     <p:column>
                                         <f:facet name="header">
-                                            <h:outputText value="OpportunityDate"/>
+                                            <h:outputText value="Opportunity Date"/>
                                         </f:facet>
                                         <h:outputText value="#{item.opportunityDate}">
                                             <f:convertDateTime pattern="dd/MM/yyyy" />
                                         </h:outputText>
+                                    </p:column>
+                                    <p:column filterBy="#{item.leadID.leadName}" filterMatchMode="contains">
+                                        <f:facet name="header">
+                                            <h:outputText value="Lead Name"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.leadID.leadName}"/>
+                                    </p:column>
+                                    <p:column filterBy="#{item.productID.productName}" filterMatchMode="contains">
+                                        <f:facet name="header">
+                                            <h:outputText value="Product Name"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.productID.productName}"/>
                                     </p:column>
                                     <p:column>
                                         <f:facet name="header">
@@ -41,27 +49,18 @@
                                         </f:facet>
                                         <h:outputText value="#{item.quantity}"/>
                                     </p:column>
-                                    <p:column filterBy="#{item.leadID.leadName}"  filterMatchMode="contains">
+                                    <p:column filterBy="#{item.userID.userFullName}" filterMatchMode="contains">
                                         <f:facet name="header">
-                                            <h:outputText value="LeadName"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.leadID.leadName}"/>
-                                    </p:column>
-                                    
-                                    <p:column filterBy="#{item.userID.userFullName}"  filterMatchMode="contains">
-                                        <f:facet name="header">
-                                            <h:outputText value="UserName"/>
+                                            <h:outputText value="User Name"/>
                                         </f:facet>
                                         <h:outputText value="#{item.userID.userFullName}"/>
                                     </p:column>
                                 </p:dataTable>
                             </h:form>
                         </f:view>
-
                     </p:layoutUnit>
                 </p:layout>
             </ui:define>
-
         </ui:composition>
 
     </body>

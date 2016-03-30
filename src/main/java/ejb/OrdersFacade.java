@@ -73,7 +73,7 @@ public class OrdersFacade extends AbstractFacade<Orders> {
     public ArrayList<Double> doReportOrders(Integer year) {
         ArrayList<Double> list = new ArrayList<>();
         Query q = em.createQuery("SELECT o FROM Orders o WHERE o.orderDate BETWEEN ?1 AND ?2");
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < 12; i++) {
             int y = year;
             int j=i+1;
             int k = 28;

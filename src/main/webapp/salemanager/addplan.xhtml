@@ -14,7 +14,7 @@
             <ui:define name="content">
                 <p:layout style="min-width:800px; height:800px;">
                     <p:layoutUnit position="west" size="215">
-                        <ui:include src="/salemanager/menu.xhtml"/>
+                        <ui:include src="menu.xhtml"/>
                     </p:layoutUnit>
 
                     <p:layoutUnit position="center">
@@ -37,7 +37,9 @@
                                     <c:forEach var="i" begin="0" end="11">
                                         <p:outputLabel value="#{i+1}st Month Value:"/>
                                         <p:inputText value="#{planManagedBean.monthList.get(i).value}" 
-                                                     required="true" requiredMessage="Enter Value:"/>
+                                                     required="true" requiredMessage="Enter Value:">
+                                            <f:validateLength minimum="8"/>
+                                        </p:inputText>
                                     </c:forEach>
 
                                 </p:panelGrid><br></br>

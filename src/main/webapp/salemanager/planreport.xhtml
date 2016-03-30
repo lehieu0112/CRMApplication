@@ -10,21 +10,27 @@
 
         <ui:composition template="./../layout/layout.xhtml">
             <f:metadata>
-                <f:viewParam name="id" value="#{planManagedBean.id}"/>
-                <f:viewAction action="#{planManagedBean.doPlanReport}"/>
+                <f:viewParam name="id" value="#{planReportManagedBean.id}"/>
+                <f:viewAction action="#{planReportManagedBean.doPlanReport}"/>
             </f:metadata>
 
             <ui:define name="content">
                 <p:layout style="min-width:800px; height:800px;">
                     <p:layoutUnit position="west" size="215">
-                        <ui:include src="/salemanager/menu.xhtml"/>
+                        <ui:include src="menu.xhtml"/>
                     </p:layoutUnit>
 
                     <p:layoutUnit position="center">
+                        <h2><h:outputText value="Plan Performance Report"/></h2>
+
+                        <p:chart type="bar" model="#{planReportManagedBean.barModel}" style="width:800px;height:400px">                            
+                        </p:chart>
+                        <br></br>
+                        <hr></hr>
+                        <br></br>
                         <f:view>
-                            <h:form>
-                                <h1><h:outputText value="Plan Performance Report"/></h1>
-                                <p:dataTable value="#{planManagedBean.report}" var="item">
+                            <h:form>                               
+                                <p:dataTable value="#{planReportManagedBean.report}" var="item">
                                     <p:column>
                                         <f:facet name="header">
                                             <h:outputText value="Month"/>

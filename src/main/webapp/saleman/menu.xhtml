@@ -6,6 +6,7 @@
     xmlns:p="http://primefaces.org/ui">
     <h:form>        
         <p:menu style="width:195px; height:776px">
+            <p:menuitem value="DashBoard" outcome="home.xhtml"/>
             <p:submenu label="Leads Management" styleClass="bar">
                 <p:menuitem value="Create a new Lead" outcome="addlead.xhtml"/>
                 <p:menuitem value="View all Leads" outcome="listleads.xhtml"/>                                 
@@ -14,6 +15,8 @@
                 <p:menuitem value="View all Opportunities" outcome="listopportunity.xhtml"/>
                 <p:menuitem value="View all Orders" outcome="vieworders.xhtml"/>
                 <p:menuitem value="View all Follows" outcome="viewfollows.xhtml"/>
+                <p:menuitem value="Setup View" outcome="addview.xhtml"/>
+                <p:menuitem value="List all Views" outcome="listview.xhtml"/>
             </p:submenu>
             <p:submenu label="Profile Management" styleClass="bar">
                 <p:menuitem value="Update Profile" outcome="editprofile.xhtml"/>

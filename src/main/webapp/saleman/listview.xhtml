@@ -6,49 +6,55 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-
     <body>
 
         <ui:composition template="./../layout/layout.xhtml">
 
             <ui:define name="content">
-                <p:layout style="min-width:800px; height:800px;">
+                <p:layout style="min-width: 800px; height: 800px;">
                     <p:layoutUnit position="west" size="215">
                         <ui:include src="menu.xhtml"/>
                     </p:layoutUnit>
 
-                    <p:layoutUnit position="center">
+                    <p:layoutUnit id="center_table" position="center">
                         <f:view>
                             <h:form styleClass="listform">
-                                <h1><h:outputText value="List Campaign"/></h1>
-                                <p:dataTable value="#{campaignManagedBean.doFindAllCampaign()}" var="item"
-                                             filteredValue="#{campaignManagedBean.searchList}"
+                                <h1><h:outputText value="List all view"/></h1>
+                                <br></br>
+                                <p:dataTable value="#{viewManagedBean.doFindAllView()}" var="item"
                                              rows="8" paginator="true">
-                                    <p:column style="width:120px;" styleClass="buttonlist">
+                                   
+                                    <p:column style="width: 80px;" styleClass="buttonlist">
                                         <f:facet name="header">
                                             <h:outputText value="Action"/>
                                         </f:facet>
-                                        <p:button value="Opportunities" outcome="opportunitiesbycid.xhtml?id=#{item.campaignID}"/>
-                                        <p:button value="Orders" outcome="ordersbycid?pid=#{item.campaignID}"/>
-                                        <p:button value="Leads" outcome="leadsbycid.xhtml?id=#{item.campaignID}"/>
+                                        <h:commandButton styleClass="button" value="Opportunity" style="width: 80px;"
+                                          action="#{viewManagedBean.doFindOpportunitiesByView(item.startDate, item.endDate,item.productID.productID)}">
+                                        </h:commandButton>
                                     </p:column>
-                                    <p:column filterBy="#{item.campaignDescription}" filterMatchMode="contains">
+                                    <p:column>
                                         <f:facet name="header">
-                                            <h:outputText value="CampaignDescription"/>
+                                            <h:outputText value="Name"/>
                                         </f:facet>
-                                        <h:outputText value="#{item.campaignDescription}"/>
+                                        <h:outputText value="#{item.viewName}"/>
                                     </p:column>
-                                    <p:column style="width:100px;">
+                                    <p:column>
                                         <f:facet name="header">
-                                            <h:outputText value="StartDate"/>
+                                            <h:outputText value="Description"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.viewDescription}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Start Date"/>
                                         </f:facet>
                                         <h:outputText value="#{item.startDate}">
                                             <f:convertDateTime pattern="dd/MM/yyyy" />
                                         </h:outputText>
-                                    </p:column >
-                                    <p:column style="width:100px;">
+                                    </p:column>
+                                    <p:column>
                                         <f:facet name="header">
-                                            <h:outputText value="EndDate"/>
+                                            <h:outputText value="End Date"/>
                                         </f:facet>
                                         <h:outputText value="#{item.endDate}">
                                             <f:convertDateTime pattern="dd/MM/yyyy" />
@@ -56,29 +62,23 @@
                                     </p:column>
                                     <p:column>
                                         <f:facet name="header">
-                                            <h:outputText value="Budget"/>
+                                            <h:outputText value="Product Name"/>
                                         </f:facet>
-                                        <h:outputText value="#{item.budget}">
-                                            <f:convertNumber type="number"/>
-                                        </h:outputText>
+                                        <h:outputText value="#{item.productID.productName}"/>
                                     </p:column>
-                                    <p:column>
+                                    <p:column style="width: 135px;">
                                         <f:facet name="header">
                                             <h:outputText value="Action"/>
                                         </f:facet>
-                                        <h:commandButton styleClass="button" value="Edit" 
-                                                         action="#{campaignManagedBean.doEditCampaign(item.campaignID)}"/>
-                                        <h:commandButton styleClass="button" style="width:90px;" value="ViewProducts" 
-                                                         action="#{campaignManagedBean.viewProducts(item.campaignID)}"/>
+                                        
                                         <h:commandButton styleClass="button" value="Delete" 
-                                                         action="#{campaignManagedBean.doDeleteCampaign(item.campaignID)}">
+                                                         action="#{viewManagedBean.doDeleteView(item.viewID)}">
                                             <f:ajax execute="@form" render="@form"/>
                                         </h:commandButton>
                                     </p:column>
                                 </p:dataTable>
                             </h:form>
                         </f:view>
-
                     </p:layoutUnit>
                 </p:layout>
             </ui:define>

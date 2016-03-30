@@ -42,6 +42,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Campaign.findByEndDate", query = "SELECT c FROM Campaign c WHERE c.endDate = :endDate"),
     @NamedQuery(name = "Campaign.findByBudget", query = "SELECT c FROM Campaign c WHERE c.budget = :budget")})
 public class Campaign implements Serializable {
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "budget")
+    private Double budget;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,9 +60,6 @@ public class Campaign implements Serializable {
     @Column(name = "endDate")
     @Temporal(TemporalType.DATE)
     private Date endDate;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "budget")
-    private double budget;
     @JoinColumn(name = "userID", referencedColumnName = "userID")
     @ManyToOne(optional = false)
     private Users userID;
@@ -105,13 +105,6 @@ public class Campaign implements Serializable {
         this.endDate = endDate;
     }
 
-    public double getBudget() {
-        return budget;
-    }
-
-    public void setBudget(double budget) {
-        this.budget = budget;
-    }
 
     public Users getUserID() {
         return userID;
@@ -153,6 +146,14 @@ public class Campaign implements Serializable {
     @Override
     public String toString() {
         return "entities.Campaign[ campaignID=" + campaignID + " ]";
+    }
+
+    public Double getBudget() {
+        return budget;
+    }
+
+    public void setBudget(Double budget) {
+        this.budget = budget;
     }
     
 }

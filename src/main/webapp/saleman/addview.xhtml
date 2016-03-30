@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./../layout/layout.xhtml">
+
+            <ui:define name="content">
+                <p:layout style="min-width: 800px; height: 800px;">
+                    <p:layoutUnit position="west" size="215">
+                        <ui:include src="menu.xhtml"/>
+                    </p:layoutUnit>
+
+                    <p:layoutUnit id="center_table" position="center">
+                        <f:view>
+                            <h:form styleClass="createform">
+                                <h1><h:outputText value="Create a new view"/></h1><br></br>
+                                <p:panelGrid columns="2" id="grid">
+                                    <p:outputLabel value="View Name" for="viewName" />
+                                    <p:inputText id="viewName" value="#{viewManagedBean.view.viewName}" title="View Name" 
+                                                 required="true" requiredMessage="Enter View Name">
+                                        <f:validateLength minimum="2"/>
+                                    </p:inputText>
+                                    <p:outputLabel value="Description:" for="viewDescription" />
+                                    <p:inputText id="viewDescription" value="#{viewManagedBean.view.viewDescription}" title="View Description" 
+                                                 required="true" requiredMessage="Enter View Description">
+                                        <f:validateLength minimum="8"/>
+                                    </p:inputText>
+                                    <p:outputLabel value="Start Date:" for="startDate" />
+                                    <p:calendar id="startDate" value="#{viewManagedBean.view.startDate}" title="Start Date" 
+                                                required="true" requiredMessage="Enter Start Date" locale="us" navigator="true"
+                                                pattern="dd-MM-yyyy" mask="true" showOn="button">
+                                    </p:calendar>
+                                    <p:outputLabel value="End Date:" for="endDate" />
+                                    <p:calendar id="endDate" value="#{viewManagedBean.view.endDate}" title="End Date" 
+                                                required="true" requiredMessage="Enter End Date" locale="us" navigator="true"
+                                                pattern="dd-MM-yyyy" mask="true" showOn="button">
+                                    </p:calendar>
+                                    <p:outputLabel value="Product Name:" for="productID" />
+                                    <p:selectOneListbox id="productID" value="#{viewManagedBean.view.productID.productID}" 
+                                                        required="true" requiredMessage="The ProductName field is required."
+                                                        filter="true" filterMatchMode="contains">
+                                        <f:selectItems value="#{viewManagedBean.doFindAllProductList()}" var="item"
+                                                       itemLabel="#{item.productName}" itemValue="#{item.productID}"/>
+                                    </p:selectOneListbox>
+                                </p:panelGrid><br></br>
+                                <p:messages id="messages" autoUpdate="true" closable="true" />
+                                <h:commandButton styleClass="button" value="Add new view" action="#{viewManagedBean.doCreateView()}" style="margin-left: 20%;"> 
+                                    <f:ajax execute="@form" render="@form"/>
+                                </h:commandButton>
+                            </h:form>
+                        </f:view>
+
+                    </p:layoutUnit>
+                </p:layout>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

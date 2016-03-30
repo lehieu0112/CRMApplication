@@ -34,24 +34,24 @@
                         </f:view>
                         <f:view>
                             <h:form>
-                                <h1><h:outputText value="List"/></h1>
+                                <h1><h:outputText value="List Orders"/></h1>
                                 <p:dataTable id="tbl" value="#{orderManagedBean.listOrders}" var="item"
                                              filteredValue="#{orderManagedBean.searchList}"
                                              rows="15" paginator="true">
                                     <f:facet name="header">
                                         <p:outputPanel>
-                                            <h:commandLink value="Export XLS  |  ">                                            
+                                            <h:commandButton style="width:120px;background-color:greenyellow" value="Export XLS">                                            
                                                 <p:dataExporter type="xls" target="tbl" fileName="orders" />
-                                            </h:commandLink>                                           
-                                            <h:commandLink value="Export CSV  |  ">
+                                            </h:commandButton><span>    </span>                                           
+                                            <h:commandButton style="width: 120px;background-color:gainsboro" value="Export CSV">
                                                 <p:dataExporter type="csv" target="tbl" fileName="orders" />
-                                            </h:commandLink>
-                                            <h:commandLink value="Export XML  |  ">
+                                            </h:commandButton><span>    </span>    
+                                            <h:commandButton style="width: 120px;background-color:skyblue" value="Export XML">
                                                 <p:dataExporter type="xml" target="tbl" fileName="orders" />
-                                            </h:commandLink>
+                                            </h:commandButton>   
                                         </p:outputPanel>
                                     </f:facet>
-                                    <p:column filterBy="#{item.item.opportunityID.leadID.leadName}" filterMatchMode="contains">
+                                    <p:column filterBy="#{item.opportunityID.leadID.leadName}" filterMatchMode="contains">
                                         <f:facet name="header">
                                             <h:outputText value="LeadName"/>
                                         </f:facet>

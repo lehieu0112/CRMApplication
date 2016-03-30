@@ -15,10 +15,10 @@
                                      required="true" requiredMessage="Enter FullName"/>
                         <h:outputLabel value="Password: " style="margin-top: 5px; font-size: 120%;"/>
                         <p:password value="#{loginManagedBean.password}" 
-                                    required="true" requiredMessage="Enter FullName" style="margin-top: 5px;" />
+                                    required="true" requiredMessage="Enter FullName" style="margin-top: 5px;" /><br></br>
                         <h:outputLabel>
                             <p:selectBooleanCheckbox value="#{loginManagedBean.rememberme}" style="margin-top: 5px;"/> Remember me
-                        </h:outputLabel>
+                        </h:outputLabel><br></br><br></br>
                         <p:link outcome="emailvalidate.xhtml" value="Forgot password?"/>
                     </h:panelGrid>
                     <p:messages id="messages" autoUpdate="true" closable="true" />

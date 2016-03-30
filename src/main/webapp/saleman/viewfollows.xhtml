@@ -19,7 +19,7 @@
                     <p:layoutUnit id="center_table" position="center">
                         <f:view>
                             <h:form styleClass="listform">
-                                <h1><h:outputText value="List all Leads"/></h1>
+                                <h1><h:outputText value="List all Follows"/></h1>
                                 <p:dataTable value="#{followManagedBean.doFindFollows()}" var="item" 
                                              filteredValue="#{followManagedBean.searchList}"
                                              rows="20" paginator="true">  
@@ -60,12 +60,14 @@
                                             <h:outputText value="#{item.followID}" />
                                             <h:outputText value="Date" />
                                             <h:outputText value="#{item.followDate}" />                                            
-                                            <h:outputText value="Address" />
+                                            <h:outputText value="Content" />
                                             <h:outputText value="#{item.followContent}" />
-                                            <h:outputText value="Phone" />
+                                            <h:outputText value="Response" />
                                             <h:outputText value="#{item.followResponse}" />
-                                            <h:outputText value="Email" />
+                                            <h:outputText value="Next Plan" />
                                             <h:outputText value="#{item.followNextPlan}" />
+                                            <h:outputText value="Next Date" />
+                                            <h:outputText value="#{item.nextDate}" />
                                         </p:panelGrid>
                                     </p:rowExpansion>
                                 </p:dataTable>

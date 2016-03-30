@@ -59,7 +59,11 @@ public class Follow implements Serializable {
     @JoinColumn(name = "opportunityID", referencedColumnName = "opportunityID")
     @ManyToOne(optional = false)
     private Opportunity opportunityID;
+    @Column(name = "nextDate")
+    @Temporal(TemporalType.DATE)
+    private Date nextDate;
 
+    
     public Follow() {
         opportunityID = new Opportunity();
     }
@@ -114,6 +118,14 @@ public class Follow implements Serializable {
 
     public void setOpportunityID(Opportunity opportunityID) {
         this.opportunityID = opportunityID;
+    }
+    
+    public Date getNextDate() {
+        return nextDate;
+    }
+
+    public void setNextDate(Date nextDate) {
+        this.nextDate = nextDate;
     }
 
     @Override

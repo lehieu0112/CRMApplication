@@ -15,10 +15,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
-/**
- *
- * @author Administrator
- */
 @Named(value = "followManagedBean")
 @RequestScoped
 public class FollowManagedBean {
@@ -65,5 +61,13 @@ public class FollowManagedBean {
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "Create Success", "Create Success !"));
         follow = new Follow();
         return "addfollow.xhtml";
+    }
+    
+    public List<Follow> doFindFollowNow(){
+        return followEJB.doFindFollowNow();
+    }
+    
+    public List<Follow> doFindFollowNext(){
+        return followEJB.doFindFollowNext();
     }
 }

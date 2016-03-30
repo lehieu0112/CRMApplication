@@ -48,8 +48,13 @@
                                                      required="true" requiredMessage="Enter Follow Next Plan">
                                         <f:validateLength minimum="5"/>
                                     </p:inputTextarea>
+                                    <p:outputLabel value="Next Date:" for="nextDate" />
+                                    <p:calendar id="nextDate" value="#{followManagedBean.follow.nextDate}" title="Next Date" 
+                                                required="true" requiredMessage="Enter Next Date" locale="us" navigator="true"
+                                                pattern="dd-MM-yyyy" mask="true" showOn="button">
+                                    </p:calendar>
                                 </p:panelGrid><br></br>
-                               
+                                
                                 <p:messages id="messages" autoUpdate="true" closable="true" />
                                 <h:commandButton styleClass="button" value="Add new follow" action="#{followManagedBean.applyCreateFollow()}"> 
                                     <f:ajax execute="@form" render="@form"/>

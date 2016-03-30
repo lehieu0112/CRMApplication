@@ -28,7 +28,7 @@ public class UsersFacade extends AbstractFacade<Users> {
         q.setParameter("loginName", username);  
         if(q.getResultList().size()>0){
             Users u = (Users)q.getResultList().get(0);
-            if(u.getLoginPass().equals(password)){
+            if((u.getLoginPass().equals(password))&&(u.getIsActive())){
                 login = true;
             }
         }
