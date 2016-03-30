@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../layout/layout.xhtml">
+
+            <ui:define name="content">
+                <p:layout style="min-width:800px;height:800px;">
+                    <p:layoutUnit position="west" size="215">
+                        <ui:include src="menu.xhtml"/>
+                    </p:layoutUnit>
+
+                    <p:layoutUnit id="center_table" position="center">
+                        <f:view>
+                            <h:form  styleClass="createform">
+                                <h:panelGrid columns="2">
+                                    <p:outputLabel value="From:" for="date1" />
+                                    <p:calendar id="date1" value="#{orderManagedBean.date1}" title="StartDate" 
+                                                required="true" requiredMessage="Enter Start Date" locale="us" navigator="true"
+                                                pattern="dd-MM-yyyy" mask="true" showOn="button"/>
+                                    <p:outputLabel value="To:" for="date2" />
+                                    <p:calendar id="date2" value="#{orderManagedBean.date2}" title="StartDate" 
+                                                required="true" requiredMessage="Enter Start Date" locale="us" navigator="true"
+                                                pattern="dd-MM-yyyy" mask="true" showOn="button"/>                                   
+                                </h:panelGrid><br></br>
+                                <h:commandButton styleClass="button" value="Apply" action="#{orderManagedBean.doFindOrdersByBate()}"/>
+                            </h:form>
+                        </f:view>
+                        <f:view>
+                            <h:form>
+                                <h1><h:outputText value="List"/></h1>
+                                <p:dataTable id="tbl" value="#{orderManagedBean.listOrders}" var="item"
+                                             filteredValue="#{orderManagedBean.searchList}"
+                                             rows="15" paginator="true">
+                                    <f:facet name="header">
+                                        <p:outputPanel>
+                                            <h:commandLink value="Export XLS  |  ">                                            
+                                                <p:dataExporter type="xls" target="tbl" fileName="orders" />
+                                            </h:commandLink>                                           
+                                            <h:commandLink value="Export CSV  |  ">
+                                                <p:dataExporter type="csv" target="tbl" fileName="orders" />
+                                            </h:commandLink>
+                                            <h:commandLink value="Export XML  |  ">
+                                                <p:dataExporter type="xml" target="tbl" fileName="orders" />
+                                            </h:commandLink>
+                                        </p:outputPanel>
+                                    </f:facet>
+                                    <p:column filterBy="#{item.item.opportunityID.leadID.leadName}" filterMatchMode="contains">
+                                        <f:facet name="header">
+                                            <h:outputText value="LeadName"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.opportunityID.leadID.leadName}"/>
+                                    </p:column>
+                                    <p:column filterBy="#{item.opportunityID.productID.productName}" filterMatchMode="contains">
+                                        <f:facet name="header">
+                                            <h:outputText value="ProductName"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.opportunityID.productID.productName}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="OrderDate"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.orderDate}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="PaymentInfo"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.paymentInfo}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="ShippingInfo"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.shippingInfo}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Quantity"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.quantity}"/>
+                                    </p:column>
+                                    <p:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="TotalAmount"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.totalAmount}">
+                                            <f:convertNumber type="number"/>
+                                        </h:outputText>
+                                    </p:column>
+
+                                </p:dataTable>
+                            </h:form>
+                        </f:view>
+
+                    </p:layoutUnit>
+                </p:layout>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

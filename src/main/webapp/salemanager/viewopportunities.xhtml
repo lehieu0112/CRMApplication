@@ -9,28 +9,24 @@
     <body>
 
         <ui:composition template="./../layout/layout.xhtml">
+            <f:metadata>
+                <f:viewParam name="id" value="#{opportunityManagedBean.id}"/>
+            </f:metadata>
 
             <ui:define name="content">
                 <p:layout style="min-width:800px;height:800px;">
                     <p:layoutUnit position="west" size="215">
                         <ui:include src="menu.xhtml"/>
                     </p:layoutUnit>
-
+                    
                     <p:layoutUnit id="center_table" position="center">
                         <f:view>
-                            <h:form styleClass="listform">
-                                <h1><h:outputText value="List all Opportunities"/></h1>
-                                <p:dataTable value="#{opportunityManagedBean.doFindAllOpportunity()}" var="item"
+                            <h:form>
+                                <h1><h:outputText value="List"/></h1>
+                                <p:dataTable value="#{opportunityManagedBean.doFindOpportunitiesByProduct()}" var="item"
                                              filteredValue="#{opportunityManagedBean.searchList}"
                                              rows="15" paginator="true">
-                                    <p:column style="width:260px;" styleClass="buttonlist">
-                                        <f:facet name="header">
-                                            <h:outputText value="Action"/>
-                                        </f:facet>
-                                        <p:button value="Add Follow" outcome="addfollow.xhtml?fid=#{item.opportunityID}"/>
-                                        <p:button value="Make Order" outcome="makeorder.xhtml?id=#{item.opportunityID}"/>
-                                        
-                                    </p:column>
+                                    
                                     <p:column>
                                         <f:facet name="header">
                                             <h:outputText value="OpportunityDate"/>
@@ -51,13 +47,13 @@
                                         </f:facet>
                                         <h:outputText value="#{item.leadID.leadName}"/>
                                     </p:column>
-                                    <p:column filterBy="#{item.productID.productName}" filterMatchMode="contains">
-                                        <f:facet name="header">
-                                            <h:outputText value="ProductName"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.productID.productName}"/>
-                                    </p:column>
                                     
+                                    <p:column filterBy="#{item.userID.userFullName}"  filterMatchMode="contains">
+                                        <f:facet name="header">
+                                            <h:outputText value="UserName"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.userID.userFullName}"/>
+                                    </p:column>
                                 </p:dataTable>
                             </h:form>
                         </f:view>

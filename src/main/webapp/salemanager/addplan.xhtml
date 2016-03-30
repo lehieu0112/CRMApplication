@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <body>
+
+        <ui:composition template="./../layout/layout.xhtml">
+
+            <ui:define name="content">
+                <p:layout style="min-width:800px; height:800px;">
+                    <p:layoutUnit position="west" size="215">
+                        <ui:include src="/salemanager/menu.xhtml"/>
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="center">
+                        <f:view>
+                            <h:form styleClass="createform">
+                                <h1><h:outputText value="Create a Plan"/></h1>
+                                <p:panelGrid columns="2">
+
+                                    <p:outputLabel value="PlanYear:" for="planYear" />
+                                    <p:inputText id="planYear" value="#{planManagedBean.plan.planYear}" title="PlanYear" 
+                                                 required="true" requiredMessage="Enter Plan Year">
+                                       
+                                    </p:inputText>
+                                    <p:outputLabel value="PlanName:" for="planName" />
+                                    <p:inputText id="planName" value="#{planManagedBean.plan.planName}" title="PlanName"
+                                                 required="true" requiredMessage="Enter Plan Name"/>
+                                    <p:outputLabel value="PlanDescription:" for="planDescription" />
+                                    <p:inputText id="planDescription" value="#{planManagedBean.plan.planDescription}" 
+                                                 title="PlanDescription" required="true" requiredMessage="Enter Plan Description"/>
+                                    <c:forEach var="i" begin="0" end="11">
+                                        <p:outputLabel value="#{i+1}st Month Value:"/>
+                                        <p:inputText value="#{planManagedBean.monthList.get(i).value}" 
+                                                     required="true" requiredMessage="Enter Value:"/>
+                                    </c:forEach>
+
+                                </p:panelGrid><br></br>
+                                <p:messages id="messages" autoUpdate="true" closable="true" />
+                                <h:commandButton styleClass="button" value="Add new Plan" 
+                                                 style="margin-left: 20%;" action="#{planManagedBean.doCreatePlan()}">  
+                                    <f:ajax execute="@form" render="@form"/>
+                                </h:commandButton>
+                            </h:form>
+                        </f:view>
+
+                    </p:layoutUnit>
+                </p:layout>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

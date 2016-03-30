@@ -11,51 +11,47 @@
         <ui:composition template="./../layout/layout.xhtml">
 
             <ui:define name="content">
-                <p:layout style="min-width:800px;height:800px;">
+                <p:layout style="min-width:800px; height:800px;">
                     <p:layoutUnit position="west" size="215">
                         <ui:include src="menu.xhtml"/>
                     </p:layoutUnit>
 
-                    <p:layoutUnit id="center_table" position="center">
+                    <p:layoutUnit position="center">
                         <f:view>
-                            <h:form styleClass="listform">
-                                <h1><h:outputText value="List all Opportunities"/></h1>
-                                <p:dataTable value="#{opportunityManagedBean.doFindAllOpportunity()}" var="item"
-                                             filteredValue="#{opportunityManagedBean.searchList}"
+                            <h:form>
+                                <h1><h:outputText value="List Plan"/></h1>
+                                <p:dataTable value="#{planManagedBean.doFindAllPlans()}" var="item"
                                              rows="15" paginator="true">
-                                    <p:column style="width:260px;" styleClass="buttonlist">
+                                    <p:column style="width: 120px;">
                                         <f:facet name="header">
-                                            <h:outputText value="Action"/>
+                                            <h:outputText value="Report"/>
                                         </f:facet>
-                                        <p:button value="Add Follow" outcome="addfollow.xhtml?fid=#{item.opportunityID}"/>
-                                        <p:button value="Make Order" outcome="makeorder.xhtml?id=#{item.opportunityID}"/>
+                                        <p:button value="Performance" outcome="planreport.xhtml?id=#{item.planID}"/>
                                         
                                     </p:column>
                                     <p:column>
                                         <f:facet name="header">
-                                            <h:outputText value="OpportunityDate"/>
+                                            <h:outputText value="PlanID"/>
                                         </f:facet>
-                                        <h:outputText value="#{item.opportunityDate}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy" />
-                                        </h:outputText>
+                                        <h:outputText value="#{item.planID}"/>
                                     </p:column>
                                     <p:column>
                                         <f:facet name="header">
-                                            <h:outputText value="Quantity"/>
+                                            <h:outputText value="PlanYear"/>
                                         </f:facet>
-                                        <h:outputText value="#{item.quantity}"/>
+                                        <h:outputText value="#{item.planYear}"/>
                                     </p:column>
-                                    <p:column filterBy="#{item.leadID.leadName}"  filterMatchMode="contains">
+                                    <p:column>
                                         <f:facet name="header">
-                                            <h:outputText value="LeadName"/>
+                                            <h:outputText value="PlanName"/>
                                         </f:facet>
-                                        <h:outputText value="#{item.leadID.leadName}"/>
+                                        <h:outputText value="#{item.planName}"/>
                                     </p:column>
-                                    <p:column filterBy="#{item.productID.productName}" filterMatchMode="contains">
+                                    <p:column>
                                         <f:facet name="header">
-                                            <h:outputText value="ProductName"/>
+                                            <h:outputText value="PlanDescription"/>
                                         </f:facet>
-                                        <h:outputText value="#{item.productID.productName}"/>
+                                        <h:outputText value="#{item.planDescription}"/>
                                     </p:column>
                                     
                                 </p:dataTable>
@@ -63,6 +59,7 @@
                         </f:view>
 
                     </p:layoutUnit>
+
                 </p:layout>
             </ui:define>
 

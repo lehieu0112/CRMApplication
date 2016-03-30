@@ -5,16 +5,17 @@ import ejb.UsersFacade;
 import entities.Leads;
 import entities.Users;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 @Named(value = "leadsManagedBean")
-@RequestScoped
+@ViewScoped
 public class LeadsManagedBean implements Serializable {
 
     @Inject
@@ -28,6 +29,33 @@ public class LeadsManagedBean implements Serializable {
     private List<Leads> searchList;
     private List<Leads> listLeads;
     private Users user = (Users)session.getAttribute("userlogin");
+    private Integer id;
+    private Date date1;
+    private Date date2;
+
+    public Date getDate1() {
+        return date1;
+    }
+
+    public void setDate1(Date date1) {
+        this.date1 = date1;
+    }
+
+    public Date getDate2() {
+        return date2;
+    }
+
+    public void setDate2(Date date2) {
+        this.date2 = date2;
+    }
+    
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
               
     public List<Leads> getListLeads() {
         return listLeads;
@@ -92,6 +120,18 @@ public class LeadsManagedBean implements Serializable {
     public String doDeleteLead(Integer id) {
         leadEJB.remove(leadEJB.find(id));
         return "listleads.xhtml";
+    }
+    
+    public List<Leads> doFindLeadsByCampaign(){
+        return leadEJB.doFindLeadsByCampaign(id);
+    }
+    
+    public List<Leads> doFindLeadsByProduct(){
+        return leadEJB.doFindLeadsByProduct(id);
+    }
+    
+    public void doFindLeadsByDate(){
+        listLeads = leadEJB.doFindLeadsByDate(date1, date2);
     }
 
 }

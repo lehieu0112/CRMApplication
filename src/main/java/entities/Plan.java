@@ -48,8 +48,7 @@ public class Plan implements Serializable {
     @Column(name = "planID")
     private Integer planID;
     @Column(name = "planYear")
-    @Temporal(TemporalType.DATE)
-    private Date planYear;
+    private Integer planYear;
     @Size(max = 255)
     @Column(name = "planName")
     private String planName;
@@ -64,7 +63,7 @@ public class Plan implements Serializable {
 
     public Plan() {
     }
-
+    
     public Plan(Integer planID) {
         this.planID = planID;
     }
@@ -77,11 +76,11 @@ public class Plan implements Serializable {
         this.planID = planID;
     }
 
-    public Date getPlanYear() {
+    public Integer getPlanYear() {
         return planYear;
     }
 
-    public void setPlanYear(Date planYear) {
+    public void setPlanYear(Integer planYear) {
         this.planYear = planYear;
     }
 

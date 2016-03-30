@@ -1,7 +1,10 @@
 package ejb;
 
 import entities.Leads;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -29,5 +32,33 @@ public class LeadsFacade extends AbstractFacade<Leads> {
             isExist = true;
         }
         return isExist;
+    }
+    
+    @Inject
+    private CampaignFacade campaignEJB;
+    public List<Leads> doFindLeadsByCampaign(Integer id){
+        Query q = em.createNativeQuery("select * from leads l where l.leadID"
+                + " in (select o.leadID from opportunity o where o.productID"
+                + " in (select p.productID from products p where p.campaignID ="+id+")"
+                + " group by o.leadID )",Leads.class);     
+        List<Leads> listLeads = q.getResultList();      
+        return listLeads;
+    }
+    
+    @Inject
+    private ProductsFacade productsEJB;
+    public List<Leads> doFindLeadsByProduct(Integer id){
+        Query q = em.createNativeQuery("select * from leads l where l.leadID"
+                + " in (select o.leadID from opportunity o"
+                + " where o.productID="+id+" group by o.leadID)",Leads.class);
+        List<Leads> listLeads = q.getResultList();      
+        return listLeads;
+    }
+    
+    public List<Leads> doFindLeadsByDate(Date date1,Date date2){
+        Query q = em.createQuery("SELECT l FROM Leads l WHERE l.dateCreated BETWEEN ?1 AND ?2");
+        q.setParameter(1, date1);
+        q.setParameter(2, date2);
+        return q.getResultList();
     }
 }

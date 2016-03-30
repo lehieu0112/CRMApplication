@@ -41,8 +41,7 @@ public class wellcome extends HttpServlet {
                 if (c != null) {
                     if (c.getName().equals("usernameCookie")) {
                         if (c.getValue() != null) {
-                            if ((c.getPath() != null)) {
-                                if (c.getPath().equals("/")) {
+                            
                                     username = c.getValue();
                                     userlogin = userEJB.getUserByLoginName(username);
                                     session.setAttribute("userlogin", userlogin);
@@ -56,8 +55,7 @@ public class wellcome extends HttpServlet {
                                         url = "/saleman/home.xhtml";
                                     }
                                     break;
-                                }
-                            }
+                               
                         }
                     }
                 }

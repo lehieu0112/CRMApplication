@@ -10,7 +10,6 @@ import ejb.OpportunityFacade;
 import ejb.OrdersFacade;
 import ejb.ProductsFacade;
 import entities.Opportunity;
-import entities.Orders;
 import entities.Products;
 import entities.Users;
 import java.util.List;
@@ -21,7 +20,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
-
 @Named(value = "opportunityManagedBean")
 @RequestScoped
 public class OpportunityManagedBean {
@@ -31,18 +29,25 @@ public class OpportunityManagedBean {
     @Inject
     private ProductsFacade productEJB;
     @Inject
-    private LeadsFacade leadEJB;   
+    private LeadsFacade leadEJB;
     @Inject
     private OrdersFacade orderEJB;
-    
 
     private Opportunity opportunity = new Opportunity();
     private HttpSession session = (HttpSession) FacesContext.
-                    getCurrentInstance().getExternalContext().getSession(false);
-    private Users user = (Users)session.getAttribute("userlogin");
+            getCurrentInstance().getExternalContext().getSession(false);
+    private Users user = (Users) session.getAttribute("userlogin");
     private List<Opportunity> searchList;
-     
+    private Integer id;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+     
     public List<Opportunity> getSearchList() {
         return searchList;
     }
@@ -50,7 +55,7 @@ public class OpportunityManagedBean {
     public void setSearchList(List<Opportunity> searchList) {
         this.searchList = searchList;
     }
-    
+
     public Users getUser() {
         return user;
     }
@@ -58,9 +63,10 @@ public class OpportunityManagedBean {
     public void setUser(Users user) {
         this.user = user;
     }
+
     public OpportunityManagedBean() {
     }
-    
+
     public Opportunity getOpportunity() {
         return opportunity;
     }
@@ -68,19 +74,19 @@ public class OpportunityManagedBean {
     public void setOpportunity(Opportunity opportunity) {
         this.opportunity = opportunity;
     }
-    
-    public void doAddLeadID(){
+
+    public void doAddLeadID() {
         opportunity.setLeadID(leadEJB.find(opportunity.getLeadID().getLeadID()));
     }
-    
-    public List<Opportunity> doFindAllOpportunity(){
+
+    public List<Opportunity> doFindAllOpportunity() {
         return opportunityEJB.findAll();
     }
-    
-    public List<Products> getProductsList(){
+
+    public List<Products> getProductsList() {
         return productEJB.findAll();
     }
-    
+
     public String doCreateOpportunity() {
         opportunity.setLeadID(leadEJB.find(opportunity.getLeadID().getLeadID()));
         opportunity.setUserID(user);
@@ -90,6 +96,13 @@ public class OpportunityManagedBean {
         opportunity = new Opportunity();
         return "addopportunity.xhtml";
     }
-    
-    
+
+    public List<Opportunity> doFindOpportunitiesByProduct() {
+        return opportunityEJB.doFindOppoByProduct(id);
+    }
+
+    public List<Opportunity> doFindOpportunitiesByCampaign() {
+        return opportunityEJB.doFindOppoByCampaign(id);
+    }
+
 }

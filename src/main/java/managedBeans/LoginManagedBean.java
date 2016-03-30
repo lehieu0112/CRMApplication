@@ -31,9 +31,7 @@ public class LoginManagedBean implements Serializable {
     
     private String username;
     private String password;
-    private HttpSession session = (HttpSession) FacesContext.
-                    getCurrentInstance().getExternalContext().getSession(false);
-    private Users userlogin = (Users)session.getAttribute("userlogin");
+    private Users userlogin;
     private boolean rememberme = false;
 
     public boolean isRememberme() {

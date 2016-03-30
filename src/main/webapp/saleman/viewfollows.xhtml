@@ -33,7 +33,9 @@
                                         <f:facet name="header">
                                             <h:outputText value="Date"/>
                                         </f:facet>
-                                        <h:outputText value="#{item.followDate}"/>
+                                        <h:outputText value="#{item.followDate}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>
                                     </p:column>
                                     <p:column filterBy="#{item.opportunityID.leadID.leadName}" filterMatchMode="contains"
                                               style="width: 200px;">

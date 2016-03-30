@@ -1,7 +1,9 @@
 package ejb;
 
 import entities.Opportunity;
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -20,5 +22,21 @@ public class OpportunityFacade extends AbstractFacade<Opportunity> {
     public OpportunityFacade() {
         super(Opportunity.class);
     }
+    
+    @Inject
+    private ProductsFacade productEJB;
+    public List<Opportunity> doFindOppoByProduct(Integer id){
+        Query q = em.createQuery("select o from Opportunity o where o.productID=?1");
+        q.setParameter(1, productEJB.find(id));
+        return q.getResultList();
+    }
   
+    @Inject
+    private CampaignFacade campaignEJB;
+    public List<Opportunity> doFindOppoByCampaign(Integer id){
+        Query q = em.createQuery("SELECT o FROM Opportunity o WHERE o.productID"
+                + " in(SELECT p FROM Products p WHERE p.campaignID=?1)");
+        q.setParameter(1, campaignEJB.find(id));
+        return q.getResultList();
+    }
 }

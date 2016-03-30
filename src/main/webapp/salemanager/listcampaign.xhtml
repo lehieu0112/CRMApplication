@@ -23,7 +23,15 @@
                                 <h1><h:outputText value="List Campaign"/></h1>
                                 <p:dataTable value="#{campaignManagedBean.doFindAllCampaign()}" var="item"
                                              filteredValue="#{campaignManagedBean.searchList}"
-                                             rows="15" paginator="true">
+                                             rows="8" paginator="true">
+                                    <p:column style="width:120px;" styleClass="buttonlist">
+                                        <f:facet name="header">
+                                            <h:outputText value="Action"/>
+                                        </f:facet>
+                                        <p:button value="Opportunities" outcome="opportunitiesbycid.xhtml?id=#{item.campaignID}"/>
+                                        <p:button value="Orders" outcome="ordersbycid?pid=#{item.campaignID}"/>
+                                        <p:button value="Leads" outcome="leadsbycid.xhtml?id=#{item.campaignID}"/>
+                                    </p:column>
                                     <p:column filterBy="#{item.campaignDescription}" filterMatchMode="contains">
                                         <f:facet name="header">
                                             <h:outputText value="CampaignDescription"/>

@@ -6,6 +6,10 @@
     xmlns:p="http://primefaces.org/ui">
     <h:form>        
         <p:menu style="width:195px; height:776px">
+            <p:submenu label="Plan Management" styleClass="bar">
+                <p:menuitem value="Create a Plan" outcome="addplan.xhtml"/>
+                <p:menuitem value="View all Plan" outcome="viewplans.xhtml"/>
+            </p:submenu>
             <p:submenu label="Campaign Management" styleClass="bar">
                 <p:menuitem value="Create a new Campaign" outcome="addcampaign.xhtml"/>
                 <p:menuitem value="View all Campaign" outcome="listcampaign.xhtml"/>                                 
@@ -13,6 +17,10 @@
             <p:submenu label="Product Management" styleClass="bar">
                 <p:menuitem value="Create a new Product" outcome="addproduct.xhtml"/>
                 <p:menuitem value="View all Products" outcome="listproducts.xhtml"/>
+            </p:submenu>
+            <p:submenu label="Report Management" styleClass="bar">
+                <p:menuitem value="Leads Report" outcome="leadsreport.xhtml"/>
+                <p:menuitem value="Orders Report" outcome="ordersreport.xhtml"/>
             </p:submenu>
             <p:submenu label="Profile Management" styleClass="bar">
                 <p:menuitem value="Update Profile" outcome="editprofile.xhtml"/>
