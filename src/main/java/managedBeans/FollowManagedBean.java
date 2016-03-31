@@ -8,6 +8,7 @@ package managedBeans;
 import ejb.FollowFacade;
 import ejb.OpportunityFacade;
 import entities.Follow;
+import java.io.Serializable;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -17,7 +18,7 @@ import javax.inject.Inject;
 
 @Named(value = "followManagedBean")
 @RequestScoped
-public class FollowManagedBean {
+public class FollowManagedBean implements Serializable {
 
     @Inject
     private FollowFacade followEJB;

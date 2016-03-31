@@ -9,6 +9,7 @@ import ejb.EmailkeyFacade;
 import ejb.UsersFacade;
 import entities.Emailkey;
 import entities.Users;
+import java.io.Serializable;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -24,7 +25,7 @@ import util.MailUtil;
  */
 @Named(value = "administratorManagedBean")
 @RequestScoped
-public class AdministratorManagedBean {
+public class AdministratorManagedBean implements Serializable {
 
     @Inject
     private UsersFacade userEJB;

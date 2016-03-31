@@ -71,7 +71,8 @@
                                         <h:commandButton styleClass="button" value="Edit" 
                                                          action="#{productManagedBean.editProduct(item.productID)}">
                                         </h:commandButton>
-                                        <h:commandButton styleClass="button" value="Delete" 
+                                        <h:commandButton styleClass="button" value="Delete"
+                                                         onclick="if (!confirm('Are you sure you want to delete this Product?')) return false"
                                                          action="#{productManagedBean.doDeleteProduct(item.productID)}">
                                             <f:ajax execute="@form" render="@form"/>
                                         </h:commandButton>

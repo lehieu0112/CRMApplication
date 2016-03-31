@@ -44,7 +44,7 @@
                                 </p:panelGrid><br></br>
                                 <h:inputHidden value="#{campaignManagedBean.campaign.campaignID}"/>
                                 <p:messages id="messages" autoUpdate="true" closable="true" />
-                                <h:commandButton styleClass="button" value="Apply" action="#{campaignManagedBean.applyEditCampaign()}">  
+                                <h:commandButton styleClass="button" value="Save" action="#{campaignManagedBean.applyEditCampaign()}">  
                                     <f:ajax execute="@form" render="@form"/>
                                 </h:commandButton>
                             </h:form>

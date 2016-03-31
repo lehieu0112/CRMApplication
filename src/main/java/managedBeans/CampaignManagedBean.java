@@ -8,6 +8,7 @@ package managedBeans;
 import ejb.CampaignFacade;
 import entities.Campaign;
 import entities.Users;
+import java.io.Serializable;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpSession;
 
 @Named(value = "campaignManagedBean")
 @RequestScoped
-public class CampaignManagedBean {
+public class CampaignManagedBean implements Serializable {
 
     @Inject
     private CampaignFacade campaignEJB;

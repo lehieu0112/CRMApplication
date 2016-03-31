@@ -21,22 +21,22 @@
                             <h:form  styleClass="createform">
                                 <h:panelGrid columns="2">
                                     <p:outputLabel value="From:" for="date1" />
-                                    <p:calendar id="date1" value="#{orderManagedBean.date1}" title="StartDate" 
+                                    <p:calendar id="date1" value="#{ordersReportManagedBean.date1}" title="StartDate" 
                                                 required="true" requiredMessage="Enter Start Date" locale="us" navigator="true"
                                                 pattern="dd-MM-yyyy" mask="true" showOn="button"/>
                                     <p:outputLabel value="To:" for="date2" />
-                                    <p:calendar id="date2" value="#{orderManagedBean.date2}" title="StartDate" 
+                                    <p:calendar id="date2" value="#{ordersReportManagedBean.date2}" title="StartDate" 
                                                 required="true" requiredMessage="Enter Start Date" locale="us" navigator="true"
                                                 pattern="dd-MM-yyyy" mask="true" showOn="button"/>                                   
                                 </h:panelGrid><br></br>
-                                <h:commandButton styleClass="button" value="Apply" action="#{orderManagedBean.doFindOrdersByBate()}"/>
+                                <h:commandButton styleClass="button" value="Apply" action="#{ordersReportManagedBean.doFindOrdersByBate()}"/>
                             </h:form>
                         </f:view>
                         <f:view>
-                            <h:form>
+                            <h:form  styleClass="listform">
                                 <h1><h:outputText value="List Orders"/></h1>
-                                <p:dataTable id="tbl" value="#{orderManagedBean.listOrders}" var="item"
-                                             filteredValue="#{orderManagedBean.searchList}"
+                                <p:dataTable id="tbl" value="#{ordersReportManagedBean.listOrders}" var="item"
+                                             filteredValue="#{ordersReportManagedBean.searchList}"
                                              rows="15" paginator="true">
                                     <f:facet name="header">
                                         <p:outputPanel>
@@ -68,7 +68,7 @@
                                             <h:outputText value="OrderDate"/>
                                         </f:facet>
                                         <h:outputText value="#{item.orderDate}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                            <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+7"/>
                                         </h:outputText>
                                     </p:column>
                                     <p:column>

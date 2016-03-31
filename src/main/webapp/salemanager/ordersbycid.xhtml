@@ -11,7 +11,7 @@
         <ui:composition template="./../layout/layout.xhtml">
 
             <f:metadata>
-                <f:viewParam name="pid" value="#{orderManagedBean.pid}"/>
+                <f:viewParam name="id" value="#{ordersReportManagedBean.id}"/>
             </f:metadata>
 
             <ui:define name="content">
@@ -22,9 +22,10 @@
 
                     <p:layoutUnit id="center_table" position="center">
                         <f:view>
-                            <h:form>
+                            <h:form styleClass="listform">
                                 <h1><h:outputText value="List Orders"/></h1>
-                                <p:dataTable id="tbl" value="#{orderManagedBean.doFindOrdersByCampaign()}" var="item">
+                                <p:dataTable id="tbl" value="#{ordersReportManagedBean.doFindOrdersByCampaign()}" var="item"
+                                             rows="15" paginator="true">
                                     <f:facet name="header">
                                         <p:outputPanel>
                                             <h:commandButton style="width:120px;background-color:greenyellow" value="Export XLS">                                            
@@ -43,7 +44,7 @@
                                             <h:outputText value="OrderDate"/>
                                         </f:facet>
                                         <h:outputText value="#{item.orderDate}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                            <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+7"/>
                                         </h:outputText>
                                     </p:column>
                                     <p:column>

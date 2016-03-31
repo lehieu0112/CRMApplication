@@ -19,7 +19,7 @@
 
                 <p:layoutUnit id="center_table" position="center">
                     <f:view>
-                        <h:form>
+                        <h:form  styleClass="listform">
                             <h1><h:outputText value="List all Orders"/></h1>
                             <p:dataTable value="#{orderManagedBean.doFindOrders()}" var="item"
                                          filteredValue="#{leadsManagedBean.searchList}"
@@ -30,7 +30,7 @@
                                         <h:outputText value="OrderDate"/>
                                     </f:facet>
                                     <h:outputText value="#{item.orderDate}">
-                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+7"/>
                                     </h:outputText>
                                 </p:column>
                                 <p:column>

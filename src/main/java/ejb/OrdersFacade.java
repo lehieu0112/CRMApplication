@@ -15,10 +15,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-/**
- *
- * @author Administrator
- */
 @Stateless
 public class OrdersFacade extends AbstractFacade<Orders> {
 
@@ -26,7 +22,13 @@ public class OrdersFacade extends AbstractFacade<Orders> {
     private EntityManager em;
     @Inject
     private OpportunityFacade oppoEJB;
-
+    
+    @Inject
+    private ProductsFacade productEJB;
+    
+    @Inject
+    private CampaignFacade campaignEJB;
+    
     @Override
     protected EntityManager getEntityManager() {
         return em;
@@ -42,18 +44,12 @@ public class OrdersFacade extends AbstractFacade<Orders> {
         return query.getResultList();
     }
 
-    @Inject
-    private ProductsFacade productEJB;
-
     public List<Orders> doFindOrdersByProduct(Integer pid) {
         Query q = em.createQuery("SELECT o from Orders o WHERE o.opportunityID IN "
                 + "(SELECT op FROM Opportunity op WHERE op.productID=?1)");
         q.setParameter(1, productEJB.find(pid));
         return q.getResultList();
     }
-
-    @Inject
-    private CampaignFacade campaignEJB;
 
     public List<Orders> doFindOrdersByCampaign(Integer id) {
         Query q = em.createQuery("SELECT o from Orders o WHERE o.opportunityID"

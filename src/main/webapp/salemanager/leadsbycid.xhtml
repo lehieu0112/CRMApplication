@@ -9,7 +9,7 @@
     <body>
         <ui:composition template="./../layout/layout.xhtml">
             <f:metadata>
-                <f:viewParam name="id" value="#{leadsManagedBean.id}"/>
+                <f:viewParam name="id" value="#{leadsReportManagedBean.id}"/>
             </f:metadata>
 
             <ui:define name="content">
@@ -22,8 +22,8 @@
                         <f:view>
                             <h:form styleClass="listform">
                                 <h1><h:outputText value="List Leads"/></h1>
-                                <p:dataTable id="tbl" value="#{leadsManagedBean.doFindLeadsByCampaign()}" var="item" 
-                                             filteredValue="#{leadsManagedBean.searchList}"
+                                <p:dataTable id="tbl" value="#{leadsReportManagedBean.doFindLeadsByCampaign()}" var="item" 
+                                             filteredValue="#{leadsReportManagedBean.searchList}"
                                              rows="15" paginator="true">  
                                     <f:facet name="header">
                                         <p:outputPanel>

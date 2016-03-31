@@ -18,17 +18,25 @@
 
                     <p:layoutUnit id="center_table" position="center">
                         <f:view>
-                            <h:form>
+                            <h:form styleClass="listform">
                                 <h1><h:outputText value="List opportunities for view"/></h1>
                                 <p:dataTable value="#{viewManagedBean.opportunityList}" var="item"
                                              filteredValue="#{viewManagedBean.searchList}"
                                              rows="15" paginator="true">
+                                    <p:column style="width:260px;" styleClass="buttonlist">
+                                        <f:facet name="header">
+                                            <h:outputText value="Action"/>
+                                        </f:facet>
+                                        <p:button value="Add Follow" outcome="addfollow.xhtml?fid=#{item.opportunityID}"/>
+                                        <p:button value="Make Order" outcome="makeorder.xhtml?id=#{item.opportunityID}"/>
+                                        
+                                    </p:column>
                                     <p:column>
                                         <f:facet name="header">
                                             <h:outputText value="Opportunity Date"/>
                                         </f:facet>
                                         <h:outputText value="#{item.opportunityDate}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                            <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+7"/>
                                         </h:outputText>
                                     </p:column>
                                     <p:column filterBy="#{item.leadID.leadName}" filterMatchMode="contains">
@@ -49,12 +57,7 @@
                                         </f:facet>
                                         <h:outputText value="#{item.quantity}"/>
                                     </p:column>
-                                    <p:column filterBy="#{item.userID.userFullName}" filterMatchMode="contains">
-                                        <f:facet name="header">
-                                            <h:outputText value="User Name"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item.userID.userFullName}"/>
-                                    </p:column>
+                                    
                                 </p:dataTable>
                             </h:form>
                         </f:view>

@@ -70,7 +70,7 @@
                                 <h:inputHidden id="userID" value="#{administratorManagedBean.edituser.userID}"/>
                                 
                                 <p:messages id="messages" autoUpdate="true" closable="true" />
-                                <h:commandButton styleClass="button" value="Apply" action="#{administratorManagedBean.applyEditUser()}">  
+                                <h:commandButton styleClass="button" value="Save" action="#{administratorManagedBean.applyEditUser()}">  
                                     <f:ajax execute="@form" render="@form"/>
                                 </h:commandButton>
                             </h:form>

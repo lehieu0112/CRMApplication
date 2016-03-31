@@ -20,22 +20,22 @@
                             <h:form  styleClass="createform">
                                 <h:panelGrid columns="2">
                                     <p:outputLabel value="From:" for="date1" />
-                                    <p:calendar id="date1" value="#{leadsManagedBean.date1}" title="StartDate" 
+                                    <p:calendar id="date1" value="#{leadsReportManagedBean.date1}" title="StartDate" 
                                                 required="true" requiredMessage="Enter Start Date" locale="us" navigator="true"
                                                 pattern="dd-MM-yyyy" mask="true" showOn="button"/>
                                     <p:outputLabel value="To:" for="date2" />
-                                    <p:calendar id="date2" value="#{leadsManagedBean.date2}" title="StartDate" 
+                                    <p:calendar id="date2" value="#{leadsReportManagedBean.date2}" title="StartDate" 
                                                 required="true" requiredMessage="Enter Start Date" locale="us" navigator="true"
                                                 pattern="dd-MM-yyyy" mask="true" showOn="button"/>                                   
                                 </h:panelGrid><br></br>
-                                <h:commandButton styleClass="button" value="Apply" action="#{leadsManagedBean.doFindLeadsByDate()}"/>
+                                <h:commandButton styleClass="button" value="Apply" action="#{leadsReportManagedBean.doFindLeadsByDate()}"/>
                             </h:form>
                         </f:view>
                         <f:view>
                             <h:form styleClass="listform">
                                 <h1><h:outputText value="List Leads"/></h1>
-                                <p:dataTable id="tbl" value="#{leadsManagedBean.listLeads}" var="item" 
-                                             filteredValue="#{leadsManagedBean.searchList}"
+                                <p:dataTable id="tbl" value="#{leadsReportManagedBean.listLeads}" var="item" 
+                                             filteredValue="#{leadsReportManagedBean.searchList}"
                                              rows="15" paginator="true">  
                                     <f:facet name="header">
                                         <p:outputPanel>

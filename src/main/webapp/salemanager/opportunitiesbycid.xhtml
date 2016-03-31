@@ -21,7 +21,7 @@
                     
                     <p:layoutUnit id="center_table" position="center">
                         <f:view>
-                            <h:form>
+                            <h:form  styleClass="listform">
                                 <h1><h:outputText value="List Opportunities"/></h1>
                                 <p:dataTable value="#{opportunityManagedBean.doFindOpportunitiesByCampaign()}" var="item"
                                              filteredValue="#{opportunityManagedBean.searchList}"
@@ -32,7 +32,7 @@
                                             <h:outputText value="OpportunityDate"/>
                                         </f:facet>
                                         <h:outputText value="#{item.opportunityDate}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                            <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+7"/>
                                         </h:outputText>
                                     </p:column>
                                     <p:column>

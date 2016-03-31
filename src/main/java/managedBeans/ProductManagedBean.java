@@ -9,6 +9,7 @@ import ejb.CampaignFacade;
 import ejb.ProductsFacade;
 import entities.Campaign;
 import entities.Products;
+import java.io.Serializable;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -18,7 +19,7 @@ import javax.inject.Inject;
 
 @Named(value = "productManagedBean")
 @RequestScoped
-public class ProductManagedBean {
+public class ProductManagedBean implements Serializable {
 
     @Inject
     private ProductsFacade productEJB;

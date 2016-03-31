@@ -29,7 +29,7 @@
                                             <h:outputText value="Action"/>
                                         </f:facet>
                                         <p:button value="Opportunities" outcome="opportunitiesbycid.xhtml?id=#{item.campaignID}"/>
-                                        <p:button value="Orders" outcome="ordersbycid?pid=#{item.campaignID}"/>
+                                        <p:button value="Orders" outcome="ordersbycid?id=#{item.campaignID}"/>
                                         <p:button value="Leads" outcome="leadsbycid.xhtml?id=#{item.campaignID}"/>
                                     </p:column>
                                     <p:column filterBy="#{item.campaignDescription}" filterMatchMode="contains">
@@ -43,7 +43,7 @@
                                             <h:outputText value="StartDate"/>
                                         </f:facet>
                                         <h:outputText value="#{item.startDate}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                            <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+7"/>
                                         </h:outputText>
                                     </p:column >
                                     <p:column style="width:100px;">
@@ -51,7 +51,7 @@
                                             <h:outputText value="EndDate"/>
                                         </f:facet>
                                         <h:outputText value="#{item.endDate}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                            <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+7"/>
                                         </h:outputText>
                                     </p:column>
                                     <p:column>
@@ -68,9 +68,10 @@
                                         </f:facet>
                                         <h:commandButton styleClass="button" value="Edit" 
                                                          action="#{campaignManagedBean.doEditCampaign(item.campaignID)}"/>
-                                        <h:commandButton styleClass="button" style="width:90px;" value="ViewProducts" 
+                                        <h:commandButton styleClass="button" style="width:100px;" value="ViewProducts" 
                                                          action="#{campaignManagedBean.viewProducts(item.campaignID)}"/>
                                         <h:commandButton styleClass="button" value="Delete" 
+                                                         onclick="if (!confirm('Are you sure you want to delete this Campaign?')) return false"
                                                          action="#{campaignManagedBean.doDeleteCampaign(item.campaignID)}">
                                             <f:ajax execute="@form" render="@form"/>
                                         </h:commandButton>

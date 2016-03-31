@@ -9,6 +9,10 @@
     <body>
 
         <ui:composition template="./../layout/layout.xhtml">
+            <f:metadata>
+                <f:viewParam name="leadid" value="#{leadsManagedBean.id}"/>
+                <f:viewAction action="#{leadsManagedBean.doEditLead()}"/>
+            </f:metadata>
 
             <ui:define name="content">
                 <p:layout style="min-width:800px; height:800px;">
@@ -62,7 +66,7 @@
                                 <h:inputHidden value="#{leadsManagedBean.lead.leadID}"/>
                                 
                                 <p:messages id="messages" autoUpdate="true" closable="true" />
-                                <h:commandButton styleClass="button" value="Apply" action="#{leadsManagedBean.applyEditLead()}">  
+                                <h:commandButton styleClass="button" value="Save" action="#{leadsManagedBean.applyEditLead()}">  
                                     <f:ajax execute="@form" render="@form"/>
                                 </h:commandButton>
                             </h:form>

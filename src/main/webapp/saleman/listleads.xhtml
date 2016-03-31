@@ -66,8 +66,10 @@
                                         <f:facet name="header">
                                             <h:outputText value="Action"/>
                                         </f:facet>
-                                        <h:commandButton styleClass="button" value="Edit" action="#{leadsManagedBean.doEditLead(item.leadID)}"/>
-                                        <h:commandButton styleClass="button" value="Delete" action="#{leadsManagedBean.doDeleteLead(item.leadID)}">
+                                        <p:button value="Edit" outcome="editlead.xhtml?leadid=#{item.leadID}" />
+                                        <h:commandButton styleClass="button" value="Delete" 
+                                            onclick="if (!confirm('Are you sure you want to delete this record?')) return false"
+                                            action="#{leadsManagedBean.doDeleteLead(item.leadID)}">
                                             <f:ajax execute="@form" render="@form"/>
                                         </h:commandButton>
                                         

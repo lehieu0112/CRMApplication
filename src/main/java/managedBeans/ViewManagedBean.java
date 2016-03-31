@@ -11,6 +11,7 @@ import ejb.ViewFacade;
 import entities.Opportunity;
 import entities.Products;
 import entities.Views;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Named;
@@ -25,7 +26,7 @@ import javax.inject.Inject;
  */
 @Named(value = "viewManagedBean")
 @RequestScoped
-public class ViewManagedBean {
+public class ViewManagedBean implements Serializable {
     
     @Inject
     private ViewFacade viewEJB;

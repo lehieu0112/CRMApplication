@@ -12,24 +12,19 @@ import ejb.UsersFacade;
 import entities.Month;
 import entities.Plan;
 import entities.Users;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
-import util.Report;
-import org.primefaces.model.chart.Axis;
-import org.primefaces.model.chart.AxisType;
-import org.primefaces.model.chart.BarChartModel;
-import org.primefaces.model.chart.ChartSeries;
 
 @Named(value = "planManagedBean")
 @RequestScoped
-public class PlanManagedBean {
+public class PlanManagedBean implements Serializable {
 
     @Inject
     private PlanFacade planEJB;
@@ -111,6 +106,13 @@ public class PlanManagedBean {
 
     public List<Plan> doFindAllPlans() {
         return planEJB.findAll();
+    }
+    
+    public String doDeletePlan(Integer id){
+        planEJB.remove(planEJB.find(id));
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Delete Success", "Delete Success !"));
+        return "viewplans.xhtml";
     }
 
 }

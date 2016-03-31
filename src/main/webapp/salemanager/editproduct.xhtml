@@ -51,10 +51,11 @@
                                 </p:panelGrid><br></br>
                                 <h:inputHidden id="productID" value="#{productManagedBean.product.productID}"/>
                                 <p:messages id="messages" autoUpdate="true" closable="true" />
-                                <h:commandButton styleClass="button" value="Apply" action="#{productManagedBean.applyEditProduct()}">  
+                                <h:commandButton styleClass="button" value="Save" action="#{productManagedBean.applyEditProduct()}">  
                                     <f:ajax execute="@form" render="@form"/>
                                 </h:commandButton>
                                 <h:commandButton styleClass="button" value="Delete" 
+                                                 onclick="if (!confirm('Are you sure you want to delete this Product?')) return false"
                                                  action="#{productManagedBean.doDeleteProduct(productManagedBean.product.productID)}">
                                 </h:commandButton>
                             </h:form>

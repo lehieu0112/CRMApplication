@@ -9,16 +9,15 @@ import ejb.OpportunityFacade;
 import ejb.OrdersFacade;
 import entities.Orders;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 
 @Named(value = "orderManagedBean")
-@ViewScoped
+@RequestScoped
 public class OrderManagedBean implements Serializable {
 
     @Inject
@@ -28,43 +27,7 @@ public class OrderManagedBean implements Serializable {
 
     private Orders order = new Orders();
     private List<Orders> searchList;
-    private Integer pid;
-    private Date date1;
-    private Date date2;
-    private List<Orders> listOrders;
-
-    public List<Orders> getListOrders() {
-        return listOrders;
-    }
-
-    public void setListOrders(List<Orders> listOrders) {
-        this.listOrders = listOrders;
-    }
     
-    public Date getDate1() {
-        return date1;
-    }
-
-    public void setDate1(Date date1) {
-        this.date1 = date1;
-    }
-
-    public Date getDate2() {
-        return date2;
-    }
-
-    public void setDate2(Date date2) {
-        this.date2 = date2;
-    }
-
-    public Integer getPid() {
-        return pid;
-    }
-
-    public void setPid(Integer pid) {
-        this.pid = pid;
-    }
-
     public List<Orders> getSearchList() {
         return searchList;
     }
@@ -101,16 +64,5 @@ public class OrderManagedBean implements Serializable {
         order = new Orders();
         return "makeorder.xhtml";
     }
-    
-    public List<Orders> doFindOrdersByProduct(){
-        return orderEJB.doFindOrdersByProduct(pid);
-    }
-    
-    public List<Orders> doFindOrdersByCampaign(){
-        return orderEJB.doFindOrdersByCampaign(pid);
-    }
-    
-    public void doFindOrdersByBate(){
-        listOrders = orderEJB.doFindOrdersByDate(date1, date2);
-    }
+         
 }

@@ -9,9 +9,11 @@ import ejb.OrdersFacade;
 import ejb.PlanFacade;
 import entities.Month;
 import entities.Plan;
+import java.io.Serializable;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
@@ -20,8 +22,8 @@ import org.primefaces.model.chart.ChartSeries;
 import util.Report;
 
 @Named(value = "planReportManagedBean")
-@RequestScoped
-public class PlanReportManagedBean {
+@ViewScoped
+public class PlanReportManagedBean implements Serializable {
 
     @Inject
     private PlanFacade planEJB;
@@ -149,46 +151,18 @@ public class PlanReportManagedBean {
 
     private BarChartModel initBarModel() {
         BarChartModel model = new BarChartModel();
-
         ChartSeries plans = new ChartSeries();
         plans.setLabel("Plan");
         for (int i = 0; i < 12; i++) {
-            plans.set(i+1, ((double) monthList.get(i).getValue())/1000000.00);
+            plans.set(i + 1, ((double) monthList.get(i).getValue()) / 1000000.00);
         }
-//        plans.set("1", (double) monthList.get(0).getValue());
-//        plans.set("2", (double) monthList.get(1).getValue());
-//        plans.set("3", (double) monthList.get(2).getValue());
-//        plans.set("4", (double) monthList.get(3).getValue());
-//        plans.set("5", (double) monthList.get(4).getValue());
-//        plans.set("6", (double) monthList.get(5).getValue());
-//        plans.set("7", (double) monthList.get(6).getValue());
-//        plans.set("8", (double) monthList.get(7).getValue());
-//        plans.set("9", (double) monthList.get(8).getValue());
-//        plans.set("10", (double) monthList.get(9).getValue());
-//        plans.set("11", (double) monthList.get(10).getValue());
-//        plans.set("12", (double) monthList.get(11).getValue());
-
         ChartSeries actually = new ChartSeries();
         actually.setLabel("Actually");
         for (int i = 0; i < 12; i++) {
-            actually.set(i+1, ((double) actuallyValueList.get(i))/1000000.00);
+            actually.set(i + 1, ((double) actuallyValueList.get(i)) / 1000000.00);
         }
-//        actually.set("1", (double) actuallyValueList.get(0));
-//        actually.set("2", (double) actuallyValueList.get(1));
-//        actually.set("3", (double) actuallyValueList.get(2));
-//        actually.set("4", (double) actuallyValueList.get(3));
-//        actually.set("5", (double) actuallyValueList.get(4));
-//        actually.set("6", (double) actuallyValueList.get(5));
-//        actually.set("7", (double) actuallyValueList.get(6));
-//        actually.set("8", (double) actuallyValueList.get(7));
-//        actually.set("9", (double) actuallyValueList.get(8));
-//        actually.set("10", (double) actuallyValueList.get(9));
-//        actually.set("11", (double) actuallyValueList.get(10));
-//        actually.set("12", (double) actuallyValueList.get(11));
-
         model.addSeries(plans);
         model.addSeries(actually);
-
         return model;
     }
 
@@ -206,4 +180,37 @@ public class PlanReportManagedBean {
         }
         return max;
     }
+
+    public String doGetTotalPlan() {
+        Double sumPlan = 0.0;
+        for (Month m : monthList) {
+            sumPlan += m.getValue();
+        }
+        NumberFormat f = NumberFormat.getNumberInstance();
+        return f.format(sumPlan);
+    }
+
+    public String doGetTotalActually() {
+        Double sumTotal = 0.0;
+        for (Double d : actuallyValueList) {
+            sumTotal += d;
+        }
+        NumberFormat f = NumberFormat.getNumberInstance();
+        return f.format(sumTotal);
+    }
+    
+    public String doGetTotalPercent(){
+        NumberFormat f = NumberFormat.getPercentInstance();
+        Double sumPlan = 0.0;
+        for (Month m : monthList) {
+            sumPlan += m.getValue();
+        }
+        Double sumTotal = 0.0;
+        for (Double d : actuallyValueList) {
+            sumTotal += d;
+        }
+        Double percent = sumTotal/sumPlan;
+        return f.format(percent);
+    }
+
 }

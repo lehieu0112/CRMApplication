@@ -12,6 +12,7 @@ import ejb.ProductsFacade;
 import entities.Opportunity;
 import entities.Products;
 import entities.Users;
+import java.io.Serializable;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -22,7 +23,7 @@ import javax.servlet.http.HttpSession;
 
 @Named(value = "opportunityManagedBean")
 @RequestScoped
-public class OpportunityManagedBean {
+public class OpportunityManagedBean implements Serializable {
 
     @Inject
     private OpportunityFacade opportunityEJB;

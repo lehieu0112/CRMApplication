@@ -34,7 +34,7 @@
                                             <h:outputText value="FollowDate"/>
                                         </f:facet>
                                         <h:outputText value="#{item.followDate}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                            <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+7" />
                                         </h:outputText>
                                     </p:column>
                                     <p:column style="width: 200px;">
@@ -42,7 +42,7 @@
                                             <h:outputText value="NextDate"/>
                                         </f:facet>
                                         <h:outputText value="#{item.nextDate}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                            <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+7" />
                                         </h:outputText>
                                     </p:column>
                                     <p:column filterBy="#{item.opportunityID.leadID.leadName}" filterMatchMode="contains"
@@ -99,7 +99,7 @@
                                             <h:outputText value="FollowDate"/>
                                         </f:facet>
                                         <h:outputText value="#{item.followDate}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                            <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+7" />
                                         </h:outputText>
                                     </p:column>
                                     <p:column style="width: 200px;">
@@ -107,7 +107,7 @@
                                             <h:outputText value="NextDate"/>
                                         </f:facet>
                                         <h:outputText value="#{item.nextDate}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                            <f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT+7" />
                                         </h:outputText>
                                     </p:column>
                                     <p:column filterBy="#{item.opportunityID.leadID.leadName}" filterMatchMode="contains"

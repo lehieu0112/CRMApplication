@@ -2,16 +2,20 @@
 }
 #top {
     position: relative;
-    background-color: #036fab;
-    height: 100px;
+    background-color: #6ea7d1;
+    height: 60px;
     color: white;
     padding: 5px;
     text-align: center;
 }
+#top h1{
+    border-bottom: none;
+    font-family: monospace;
+}
 #bottom {
     position: relative;
     background-color: #c2dfef;
-    height: 100px;
+    height: 150px;
     padding: 5px;
     text-align: center;
 }
@@ -70,8 +74,17 @@
 }
 #content h1{
     text-align: center;
-    color: black;
+    color: #6ea7d1;
+    font-family: monospace;
+    font-size: 18pt;
 }
+
+#content h2{
+    color: #6ea7d1;
+    font-family: monospace;
+    font-size: 18pt;
+}
+
 .createform input{
     width: 400px;
 }
@@ -81,18 +94,38 @@
 }
 .createform .button{
     width: 150px;
-    padding: 5px;
-    border-radius: 3px;
-    background-color: #c2dfef;
+    padding: 4px;
+    color: #1d5987;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: #eaf4fd;
+    border: 1px solid #c2dfef;
+}
+
+.createform .button:hover{
+    background-color: #ddecf7;
+    border: 1px solid #79b7e7;
 }
 
 .listform .button{
     width: 60px;
-    padding: 5px;
-    border-radius: 3px;
-    background-color: #c2dfef;
+    padding: 4px;
+    color: #1d5987;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: #eaf4fd;
+    border: 1px solid #c2dfef;
+}
+
+.listform .button:hover{
+    background-color: #ddecf7;
+    border: 1px solid #79b7e7;
 }
 
 .buttonlist button{
     width: 120px;
+}
+
+#content .listform td{
+    text-align: center;
 }
