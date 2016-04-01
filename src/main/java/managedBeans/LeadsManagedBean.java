@@ -81,7 +81,7 @@ public class LeadsManagedBean implements Serializable {
     }
 
     public List<Leads> doFindAllLeads() {
-        return leadEJB.findAll();
+        return leadEJB.doFindAllLeadsByUser(user.getUserID());
     }
 
     public String doEditLead() {

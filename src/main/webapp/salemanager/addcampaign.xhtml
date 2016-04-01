@@ -37,9 +37,11 @@
                                     <p:outputLabel value="Budget:" for="budget" />
                                     <p:inputText id="budget" value="#{campaignManagedBean.campaign.budget}" title="Budget" 
                                                  required="true" requiredMessage="Enter budget">
-                                        
                                     </p:inputText>
-                                    
+                                    <p:outputLabel value="Target:" for="target" />
+                                    <p:inputText id="target" value="#{campaignManagedBean.campaign.target}" title="Target" 
+                                                 required="true" requiredMessage="Enter target">
+                                    </p:inputText>
                                 </p:panelGrid><br></br>
                                 <p:messages id="messages" autoUpdate="true" closable="true" />
                                 <h:commandButton styleClass="button" value="Add new Campaign" action="#{campaignManagedBean.doCreateCampaign()}">  

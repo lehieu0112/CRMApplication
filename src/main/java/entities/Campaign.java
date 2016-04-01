@@ -65,6 +65,16 @@ public class Campaign implements Serializable {
     private Users userID;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "campaignID")
     private List<Products> productsList;
+    @Column(name = "target")
+    private Double target;
+
+    public Double getTarget() {
+        return target;
+    }
+
+    public void setTarget(Double target) {
+        this.target = target;
+    }
 
     public Campaign() {
     }

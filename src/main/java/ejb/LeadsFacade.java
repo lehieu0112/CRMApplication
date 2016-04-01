@@ -61,4 +61,12 @@ public class LeadsFacade extends AbstractFacade<Leads> {
         q.setParameter(2, date2);
         return q.getResultList();
     }
+    
+    @Inject
+    private UsersFacade userEJB;
+    public List<Leads> doFindAllLeadsByUser(Integer id){
+        Query q = em.createQuery("SELECT l FROM Leads l WHERE l.userID=?1");
+        q.setParameter(1, userEJB.find(id));
+        return q.getResultList();
+    }
 }

@@ -39,16 +39,7 @@ public class OpportunityManagedBean implements Serializable {
             getCurrentInstance().getExternalContext().getSession(false);
     private Users user = (Users) session.getAttribute("userlogin");
     private List<Opportunity> searchList;
-    private Integer id;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-     
+    
     public List<Opportunity> getSearchList() {
         return searchList;
     }
@@ -98,12 +89,5 @@ public class OpportunityManagedBean implements Serializable {
         return "addopportunity.xhtml";
     }
 
-    public List<Opportunity> doFindOpportunitiesByProduct() {
-        return opportunityEJB.doFindOppoByProduct(id);
-    }
-
-    public List<Opportunity> doFindOpportunitiesByCampaign() {
-        return opportunityEJB.doFindOppoByCampaign(id);
-    }
-
+    
 }
