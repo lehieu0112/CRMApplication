@@ -31,16 +31,20 @@
                                     </p:calendar>
                                     <p:outputLabel value="EndDate:" for="endDate" />
                                     <p:calendar id="endDate" value="#{campaignManagedBean.campaign.endDate}" title="EndDate" 
-                                                 required="true" requiredMessage="Enter End Date" locale="us" navigator="true"
+                                                required="true" requiredMessage="Enter End Date" locale="us" navigator="true"
                                                 pattern="dd-MM-yyyy" mask="true" showOn="button">                                 
                                     </p:calendar>
                                     <p:outputLabel value="Budget:" for="budget" />
                                     <p:inputText id="budget" value="#{campaignManagedBean.campaign.budget}" title="Budget" 
                                                  required="true" requiredMessage="Enter budget">
+                                        <f:validateLength minimum="8"/>
+                                        <f:convertNumber type="number"/>
                                     </p:inputText>
                                     <p:outputLabel value="Target:" for="target" />
                                     <p:inputText id="target" value="#{campaignManagedBean.campaign.target}" title="Target" 
                                                  required="true" requiredMessage="Enter target">
+                                        <f:validateLength minimum="8"/>
+                                        <f:convertNumber type="number"/>
                                     </p:inputText>
                                 </p:panelGrid><br></br>
                                 <p:messages id="messages" autoUpdate="true" closable="true" />

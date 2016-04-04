@@ -35,7 +35,8 @@
                                     <p:outputLabel value="Price:" for="productPrice" />
                                     <p:inputText id="productPrice" value="#{productManagedBean.product.productPrice}" title="Product Price" 
                                                  required="true" requiredMessage="Enter Product Price">
-                                        <f:validateLength minimum="5"/>
+                                        <f:validateLength minimum="6"/>
+                                        <f:convertNumber type="number"/>
                                     </p:inputText>
                                     <p:outputLabel value="Campaign Name:" for="campaignID" />
                                     <p:selectOneMenu id="campaignID" value="#{productManagedBean.campaignID}"

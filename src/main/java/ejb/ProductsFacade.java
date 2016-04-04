@@ -6,9 +6,13 @@
 package ejb;
 
 import entities.Products;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -26,6 +30,16 @@ public class ProductsFacade extends AbstractFacade<Products> {
 
     public ProductsFacade() {
         super(Products.class);
+    }
+    
+    public List<Products> doFindProducts(){
+        LocalDate now = LocalDate.now();
+        Date date = Date.valueOf(now);
+        Query q = em.createQuery("SELECT p FROM Products p WHERE p.campaignID IN"
+                + " (SELECT c FROM Campaign c WHERE ((c.startDate<=?1) AND (c.endDate>=?2)))");
+        q.setParameter(1, date);
+        q.setParameter(2, date);     
+        return q.getResultList();
     }
     
 }

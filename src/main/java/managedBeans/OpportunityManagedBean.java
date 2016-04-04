@@ -76,7 +76,7 @@ public class OpportunityManagedBean implements Serializable {
     }
 
     public List<Products> getProductsList() {
-        return productEJB.findAll();
+        return productEJB.doFindProducts();
     }
 
     public String doCreateOpportunity() {
