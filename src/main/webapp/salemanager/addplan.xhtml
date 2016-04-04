@@ -39,6 +39,7 @@
                                         <p:inputText value="#{planManagedBean.monthList.get(i).value}" 
                                                      required="true" requiredMessage="Enter Value:">
                                             <f:validateLength minimum="8"/>
+                                            <f:convertNumber type="number"/>
                                         </p:inputText>
                                     </c:forEach>
 

@@ -108,9 +108,19 @@ public class PlanReportManagedBean implements Serializable {
     }
 
     public void doPlanReport() {
+        monthList = new ArrayList<>();
+        monthList = addMonths();
+        actuallyValueList = new ArrayList<>();
+        percentageList = new ArrayList<>();
+        report = new ArrayList<>();
+        
         plan = planEJB.find(id);
+        plan.setMonthList(planEJB.getMonthList(plan));
+
         for (int i = 0; i < 12; i++) {
-            monthList.get(i).setValue(plan.getMonthList().get(i).getValue());
+            if(monthList.get(i)!=null){
+                monthList.get(i).setValue(plan.getMonthList().get(i).getValue());
+            }           
         }
         int year = plan.getPlanYear();
         actuallyValueList = orderEJB.doReportOrders(year);
@@ -198,8 +208,8 @@ public class PlanReportManagedBean implements Serializable {
         NumberFormat f = NumberFormat.getNumberInstance();
         return f.format(sumTotal);
     }
-    
-    public String doGetTotalPercent(){
+
+    public String doGetTotalPercent() {
         NumberFormat f = NumberFormat.getPercentInstance();
         Double sumPlan = 0.0;
         for (Month m : monthList) {
@@ -209,7 +219,7 @@ public class PlanReportManagedBean implements Serializable {
         for (Double d : actuallyValueList) {
             sumTotal += d;
         }
-        Double percent = sumTotal/sumPlan;
+        Double percent = sumTotal / sumPlan;
         return f.format(percent);
     }
 

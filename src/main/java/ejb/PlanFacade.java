@@ -5,10 +5,13 @@
  */
 package ejb;
 
+import entities.Month;
 import entities.Plan;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -26,6 +29,12 @@ public class PlanFacade extends AbstractFacade<Plan> {
 
     public PlanFacade() {
         super(Plan.class);
+    }
+    
+    public List<Month> getMonthList(Plan p){
+        Query query = em.createQuery("SELECT m FROM Month m WHERE m.planID=?1 ORDER BY m.month ASC");
+        query.setParameter(1, p);
+        return query.getResultList();
     }
     
 }
